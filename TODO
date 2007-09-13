@@ -1,0 +1,11 @@
+# $Id: TODO,v 1.1 2007-09-13 00:22:54 skim Exp $
+
+TODO
+====
+1. At-rule.
+2. Indentovani pro selectory, pokud jsou hodne dlouhe.
+   Plati pro CSS::Structure::Output::Indent
+3.
+
+Applied
+=======

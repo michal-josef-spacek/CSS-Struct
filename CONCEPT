@@ -1,0 +1,17 @@
+$Id: CONCEPT,v 1.1 2007-09-13 00:22:54 skim Exp $
+
+Concept
+=======
+1. Zakladni modul ma handlery pro vkladani znacek:
+- selector
+- definitions
+- end of selector
+- at-rules
+
+# Tohle se pouziva.
+- ['a', '@import', 'value']         # "@import value"
+- ['c', 'comment']                  # "/* comment */" or "<!-- comment -->"
+- ['d', 'property', 'value', ..]    # "property: value; .."
+- ['e']                             # "}"
+- ['r', "text\ntext"]               # "text\ntext"
+- ['s', 'selector']                 # "selector {"
