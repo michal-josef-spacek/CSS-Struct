@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 package CSS::Structure::Output::Indent;
 #------------------------------------------------------------------------------
-# $Id: Indent.pm,v 1.1 2007-09-13 00:22:56 skim Exp $
+# $Id: Indent.pm,v 1.2 2007-09-13 00:36:25 skim Exp $
 
 # Pragmas.
 use strict;
@@ -100,6 +100,12 @@ sub reset($) {
 
 	# Open selector flag.
 	$self->{'open_selector'} = 0;
+
+	# Any processed selector.
+	$self->{'processed'} = 0;
+
+	# Indent flag.
+	$self->{'indent_flag'} = 0;
 }
 
 #------------------------------------------------------------------------------
@@ -128,34 +134,54 @@ sub _detect_data($$) {
 			$self->{'flush_code'} .= $self->{'indent_string'}.
 				$par.': '.$val.";\n";
 		}
+		$self->{'processed'} = 1;
 
 	# At-rule.
 	# TODO
 	} elsif ($data->[0] eq 'a') {
 		$self->{'flush_code'} .= $data->[1];
+		$self->{'processed'} = 1;
 
 	# Begin of selector.
 	} elsif ($data->[0] eq 's') {
 		push @{$self->{'tmp_code'}}, "$data->[1]";
 		$self->{'open_selector'} = 1;
+		$self->{'indent_flag'} = 1;
 
 	# Comment.
 	} elsif ($data->[0] eq 'c') {
 		shift @{$data};
-		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0];
+		if ($#{$self->{'tmp_code'}} > -1) {
+			$self->_flush_tmp;
+		}
+		if ($self->{'processed'}) {
+			$self->{'flush_code'} .= "\n";
+		}
+		if ($self->{'indent_flag'}) {
+			$self->{'flush_code'} .= $self->{'indent_string'};
+		}
+		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0].
+			' ';
 		foreach my $d (@{$data}) {
 			$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d} 
 				: $d;
 		}
-		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[1];
+		$self->{'flush_code'} .= ' '.
+			$self->{'comment_delimeters'}->[1]."\n";;
+		$self->{'processed'} = 0;
 
 	# End of selector.
 	} elsif ($data->[0] eq 'e') {
 		unless ($self->{'open_selector'}) {
 			err "Bad ending of selector.";
 		}
-		$self->{'flush_code'} .= "}";
+		if ($#{$self->{'tmp_code'}} > -1) {
+			$self->_flush_tmp;
+		}
+		$self->{'flush_code'} .= "}\n";
 		$self->{'open_selector'} = 0;
+		$self->{'processed'} = 1;
+		$self->{'indent_flag'} = 0;
 
 	# Raw data.
 	} elsif ($data->[0] eq 'r') {
@@ -177,6 +203,9 @@ sub _flush_tmp($) {
 # Flush $self->{'tmp_code'}.
 
 	my $self = shift;
+	if ($self->{'processed'}) {
+		$self->{'flush_code'} .= "\n";
+	}
 	$self->{'flush_code'} .= join(', ', @{$self->{'tmp_code'}})." {\n";
 	$self->{'tmp_code'} = [];
 }
