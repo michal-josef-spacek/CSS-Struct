@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 package CSS::Structure::Output::Indent;
 #------------------------------------------------------------------------------
-# $Id: Indent.pm,v 1.2 2007-09-13 00:36:25 skim Exp $
+# $Id: Indent.pm,v 1.3 2007-09-13 00:41:30 skim Exp $
 
 # Pragmas.
 use strict;
@@ -41,7 +41,13 @@ sub new($@) {
 	}
 
 	# Check to comment delimeters.
-	# TODO
+	if ((! grep { $_ eq $self->{'comment_delimeters'}->[0] } 
+		('/*', '<!--'))
+		|| (! grep { $_ eq $self->{'comment_delimeters'}->[1] }
+		('*/', '-->'))) {
+		
+		err "Bad comment delimeters.";
+	}
 
 	# Reset.
 	$self->reset;
