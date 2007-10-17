@@ -1,11 +1,12 @@
-# $Id: TODO,v 1.1 2007-09-13 00:22:54 skim Exp $
+# $Id: TODO,v 1.2 2007-10-17 09:11:03 skim Exp $
 
 TODO
 ====
 1. At-rule.
 2. Indentovani pro selectory, pokud jsou hodne dlouhe.
    Plati pro CSS::Structure::Output::Indent
-3.
+3. Asi by se mela pridat instrukce. Aby sly vkladat programove bloky.
+4.
 
 Applied
 =======
