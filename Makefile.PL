@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1 2007-09-13 00:22:54 skim Exp $
+# $Id: Makefile.PL,v 1.2 2007-11-27 13:21:48 skim Exp $
 
 # Modules.
 use ExtUtils::MakeMaker;
@@ -7,7 +7,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
 	'NAME' => 'CSS::Structure',
 	'PREREQ_PM' => {
-		'Error::Simple::Multiple' => 0.03,
+		'Error::Simple::Multiple' => 0.04,
 	},
 	'VERSION' => 0.01,
 );
