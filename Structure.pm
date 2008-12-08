@@ -1,6 +1,6 @@
-1;
-
 =pod
+
+=encoding utf8
 
 =head1 NAME
 
@@ -24,16 +24,24 @@
  r - Raw section.
  s - Selector.
 
+=head1 DEPENDENCIES
+
+ None.
+
 =head1 SEE ALSO
 
-L<CSS::Structure::Output::Raw>, 
+L<CSS::Structure::Output::Raw>,
 L<CSS::Structure::Output::Indent>
 
 =head1 AUTHOR
 
- Michal Spacek L<tupinek@gmail.com>
+ Michal Špaček L<tupinek@gmail.com>
 
-=head1 VERSION 
+=head1 LICENSE AND COPYRIGHT
+
+ BSD license.
+
+=head1 VERSION
 
  0.01
 
