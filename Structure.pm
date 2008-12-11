@@ -30,8 +30,8 @@
 
 =head1 SEE ALSO
 
-L<CSS::Structure::Output::Raw>,
-L<CSS::Structure::Output::Indent>
+L<CSS::Structure::Output::Raw(3pm)>,
+L<CSS::Structure::Output::Indent(3pm)>.
 
 =head1 AUTHOR
 
