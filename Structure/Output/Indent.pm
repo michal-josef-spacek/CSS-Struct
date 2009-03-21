@@ -43,7 +43,7 @@ sub new {
 		my $key = shift @params;
 		my $val = shift @params;
 		if (! exists $self->{$key}) {
-			err "Bad parameter '$key'.";
+			err "Unknown parameter '$key'.";
 		}
 		$self->{$key} = $val;
 	}
@@ -254,11 +254,13 @@ __END__
 
  use CSS::Structure::Output::Indent;
  my $t = CSS::Structure::Output::Indent->new(
-   'output_handler' => *STDOUT,
+         'output_handler' => \*STDOUT,
  );
- $t->put(['s', 'blam']);
- $t->put(['d', 'weight', '100px']);
- $t->put(['e']);
+ $t->put(
+         ['s', 'blam'],
+         ['d', 'weight', '100px'],
+         ['e'],
+ );
  $t->finalize;
  $t->flush;
  $t->reset;
@@ -271,20 +273,18 @@ __END__
 
  Constructor.
 
-=head1 PARAMETERS
-
 =over 8
 
-=item B<output_handler>
+=item * B<output_handler>
 
  Handler for print output strings.
- Default is *STDOUT.
+ Default is undef.
 
-=item B<skip_bad_tags>
+=item * B<skip_bad_tags>
 
  TODO
 
-=item B<comment_delimeters>
+=item * B<comment_delimeters>
 
  TODO
 
