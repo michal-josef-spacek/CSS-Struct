@@ -42,7 +42,9 @@ sub new {
 	while (@params) {
 		my $key = shift @params;
 		my $val = shift @params;
-		err "Bad parameter '$key'." unless exists $self->{$key};
+		if (! exists $self->{$key}) {
+			err "Bad parameter '$key'.";
+		}
 		$self->{$key} = $val;
 	}
 
@@ -208,7 +210,9 @@ sub _detect_data {
 
 	# Other.
 	} else {
-		err 'Bad type of data.' if $self->{'skip_bad_tags'};
+		if ($self->{'skip_bad_tags'}) {
+			err 'Bad type of data.';
+		}
 	}
 	return;
 }
