@@ -306,6 +306,7 @@ __END__
 
 =head1 DEPENDENCIES
 
+L<Readonly(3pm)>,
 L<Error::Simple::Multiple(3pm)>.
 
 =head1 SEE ALSO
