@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
 	'NAME' => 'CSS::Structure',
 	'PREREQ_PM' => {
-		'Error::Simple::Multiple' => 0.04,
+		'Error::Simple::Multiple' => 0.05,
 	},
 	'VERSION' => 0.01,
 	'test' => {
