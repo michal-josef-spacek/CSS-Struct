@@ -12,7 +12,7 @@ use List::MoreUtils qw(none);
 use Readonly;
 
 # Constants.
-Readonly::Scalar my $EMPTY => q{};
+Readonly::Scalar my $EMPTY_STR => q{};
 Readonly::Scalar my $SPACE => q{ };
 
 # Version.
@@ -27,7 +27,7 @@ sub new {
 	my $self = bless {}, $class;
 
 	# Set output handler.
-	$self->{'output_handler'} = $EMPTY;
+	$self->{'output_handler'} = $EMPTY_STR;
 
 	# Skip bad tags.
 	$self->{'skip_bad_tags'} = 0;
@@ -106,7 +106,7 @@ sub reset {
 	my $self = shift;
 
 	# Flush code.
-	$self->{'flush_code'} = $EMPTY;
+	$self->{'flush_code'} = $EMPTY_STR;
 
 	# Tmp code.
 	$self->{'tmp_code'} = [];
