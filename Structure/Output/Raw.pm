@@ -133,8 +133,23 @@ sub _detect_data {
 
 	my ($self, $data) = @_;
 
+	# At-rule.
+	if ($data->[0] eq 'a') {
+		$self->{'flush_code'} .= $data->[1];
+		$self->{'flush_code'} .= ' "'.$data->[2].'";';
+
+	# Comment.
+	} elsif ($data->[0] eq 'c') {
+		shift @{$data};
+		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0];
+		foreach my $d (@{$data}) {
+			$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d}
+				: $d;
+		}
+		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[1];
+
 	# Definitions.
-	if ($data->[0] eq 'd') {
+	} elsif ($data->[0] eq 'd') {
 		if (scalar @{$self->{'tmp_code'}}) {
 			$self->_flush_tmp;
 		}
@@ -147,26 +162,6 @@ sub _detect_data {
 			my $val = shift @{$data};
 			$self->{'flush_code'} .= $par.':'.$val.';';
 		}
-
-	# At-rule.
-	} elsif ($data->[0] eq 'a') {
-		$self->{'flush_code'} .= $data->[1];
-		$self->{'flush_code'} .= ' "'.$data->[2].'";';
-
-	# Begin of selector.
-	} elsif ($data->[0] eq 's') {
-		push @{$self->{'tmp_code'}}, "$data->[1]";
-		$self->{'open_selector'} = 1;
-
-	# Comment.
-	} elsif ($data->[0] eq 'c') {
-		shift @{$data};
-		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0];
-		foreach my $d (@{$data}) {
-			$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d}
-				: $d;
-		}
-		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[1];
 
 	# End of selector.
 	} elsif ($data->[0] eq 'e') {
@@ -183,6 +178,11 @@ sub _detect_data {
 			my $data = shift @{$data};
 			$self->{'flush_code'} .= $data;
 		}
+
+	# Begin of selector.
+	} elsif ($data->[0] eq 's') {
+		push @{$self->{'tmp_code'}}, "$data->[1]";
+		$self->{'open_selector'} = 1;
 
 	# Other.
 	} else {

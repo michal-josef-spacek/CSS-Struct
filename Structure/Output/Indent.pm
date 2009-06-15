@@ -143,34 +143,11 @@ sub _detect_data {
 
 	my ($self, $data) = @_;
 
-	# Definitions.
-	if ($data->[0] eq 'd') {
-		if (scalar @{$self->{'tmp_code'}}) {
-			$self->_flush_tmp;
-		}
-		if (! $self->{'open_selector'}) {
-			err 'No selector.';
-		}
-		shift @{$data};
-		while (@{$data}) {
-			my $par = shift @{$data};
-			my $val = shift @{$data};
-			$self->{'flush_code'} .= $self->{'indent_string'}.
-				$par.': '.$val.";\n";
-		}
-		$self->{'processed'} = 1;
-
 	# At-rule.
-	} elsif ($data->[0] eq 'a') {
+	if ($data->[0] eq 'a') {
 		$self->{'flush_code'} .= $data->[1];
 		$self->{'flush_code'} .= ' "'.$data->[2].'";';
 		$self->{'processed'} = 1;
-
-	# Begin of selector.
-	} elsif ($data->[0] eq 's') {
-		push @{$self->{'tmp_code'}}, "$data->[1]";
-		$self->{'open_selector'} = 1;
-		$self->{'indent_flag'} = 1;
 
 	# Comment.
 	} elsif ($data->[0] eq 'c') {
@@ -194,6 +171,23 @@ sub _detect_data {
 			$self->{'comment_delimeters'}->[1]."\n";;
 		$self->{'processed'} = 0;
 
+	# Definitions.
+	} elsif ($data->[0] eq 'd') {
+		if (scalar @{$self->{'tmp_code'}}) {
+			$self->_flush_tmp;
+		}
+		if (! $self->{'open_selector'}) {
+			err 'No selector.';
+		}
+		shift @{$data};
+		while (@{$data}) {
+			my $par = shift @{$data};
+			my $val = shift @{$data};
+			$self->{'flush_code'} .= $self->{'indent_string'}.
+				$par.': '.$val.";\n";
+		}
+		$self->{'processed'} = 1;
+
 	# End of selector.
 	} elsif ($data->[0] eq 'e') {
 		if (! $self->{'open_selector'}) {
@@ -214,6 +208,12 @@ sub _detect_data {
 			my $data = shift @{$data};
 			$self->{'flush_code'} .= $data;
 		}
+
+	# Begin of selector.
+	} elsif ($data->[0] eq 's') {
+		push @{$self->{'tmp_code'}}, "$data->[1]";
+		$self->{'open_selector'} = 1;
+		$self->{'indent_flag'} = 1;
 
 	# Other.
 	} else {
