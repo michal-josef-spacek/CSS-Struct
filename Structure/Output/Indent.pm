@@ -137,6 +137,34 @@ sub reset {
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
+sub _comment {
+#------------------------------------------------------------------------------
+# Process comment.
+
+	my ($self, $data) = @_;
+	shift @{$data};
+	if (scalar @{$self->{'tmp_code'}}) {
+		$self->_flush_tmp;
+	}
+	if ($self->{'processed'}) {
+		$self->{'flush_code'} .= "\n";
+	}
+	if ($self->{'indent_flag'}) {
+		$self->{'flush_code'} .= $self->{'indent_string'};
+	}
+	$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0].
+		$SPACE;
+	foreach my $d (@{$data}) {
+		$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d}
+			: $d;
+	}
+	$self->{'flush_code'} .= $SPACE.
+		$self->{'comment_delimeters'}->[1]."\n";;
+	$self->{'processed'} = 0;
+	return;
+}
+
+#------------------------------------------------------------------------------
 sub _detect_data {
 #------------------------------------------------------------------------------
 # Detect and process data.
@@ -151,25 +179,7 @@ sub _detect_data {
 
 	# Comment.
 	} elsif ($data->[0] eq 'c') {
-		shift @{$data};
-		if (scalar @{$self->{'tmp_code'}}) {
-			$self->_flush_tmp;
-		}
-		if ($self->{'processed'}) {
-			$self->{'flush_code'} .= "\n";
-		}
-		if ($self->{'indent_flag'}) {
-			$self->{'flush_code'} .= $self->{'indent_string'};
-		}
-		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0].
-			$SPACE;
-		foreach my $d (@{$data}) {
-			$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d}
-				: $d;
-		}
-		$self->{'flush_code'} .= $SPACE.
-			$self->{'comment_delimeters'}->[1]."\n";;
-		$self->{'processed'} = 0;
+		$self->_comment($data);
 
 	# Definitions.
 	} elsif ($data->[0] eq 'd') {
@@ -200,6 +210,10 @@ sub _detect_data {
 		$self->{'open_selector'} = 0;
 		$self->{'processed'} = 1;
 		$self->{'indent_flag'} = 0;
+
+	# Instruction.
+	} elsif ($data->[0] eq 'i') {
+		$self->_comment($data);
 
 	# Raw data.
 	} elsif ($data->[0] eq 'r') {

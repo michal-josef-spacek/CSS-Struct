@@ -127,6 +127,22 @@ sub reset {
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
+sub _comment {
+#------------------------------------------------------------------------------
+# Process comment.
+
+	my ($self, $data) = @_;
+	shift @{$data};
+	$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0];
+	foreach my $d (@{$data}) {
+		$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d}
+			: $d;
+	}
+	$self->{'flush_code'} .= $self->{'comment_delimeters'}->[1];
+	return;
+}
+
+#------------------------------------------------------------------------------
 sub _detect_data {
 #------------------------------------------------------------------------------
 # Detect and process data.
@@ -140,13 +156,7 @@ sub _detect_data {
 
 	# Comment.
 	} elsif ($data->[0] eq 'c') {
-		shift @{$data};
-		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0];
-		foreach my $d (@{$data}) {
-			$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d}
-				: $d;
-		}
-		$self->{'flush_code'} .= $self->{'comment_delimeters'}->[1];
+		$self->_comment($data);
 
 	# Definitions.
 	} elsif ($data->[0] eq 'd') {
@@ -170,6 +180,10 @@ sub _detect_data {
 		}
 		$self->{'flush_code'} .= '}';
 		$self->{'open_selector'} = 0;
+
+	# Instruction.
+	} elsif ($data->[0] eq 'i') {
+		$self->_comment($data);
 
 	# Raw data.
 	} elsif ($data->[0] eq 'r') {
