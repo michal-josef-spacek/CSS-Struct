@@ -7,9 +7,10 @@ Concept
 - at-rules
 
 # Tohle se pouziva.
-- ['a', '@import', 'value']         # "@import value"
-- ['c', 'comment']                  # "/* comment */" or "<!-- comment -->"
-- ['d', 'property', 'value', ..]    # "property: value; .."
-- ['e']                             # "}"
-- ['r', "text\ntext"]               # "text\ntext"
-- ['s', 'selector']                 # "selector {"
+- ['a', '@import', 'value']                  # >>@import "value";<<
+- ['c', 'comment']                           # "/* comment */" or "<!-- comment -->"
+- ['d', 'property', 'value', ..]             # "property: value; .."
+- ['e']                                      # "}"
+- ['i', 'perl', "return ['c', 'comment'];"], # Bud provede, nebo da do komentare.
+- ['r', "text\ntext"]                        # "text\ntext"
+- ['s', 'selector']                          # "selector {"
