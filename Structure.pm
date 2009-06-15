@@ -36,6 +36,7 @@ __END__
  c - Comment.
  d - Definition.
  e - End of selector.
+ i - Instruction.
  r - Raw section.
  s - Selector.
 
