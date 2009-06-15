@@ -149,9 +149,9 @@ sub _detect_data {
 		}
 
 	# At-rule.
-	# TODO
 	} elsif ($data->[0] eq 'a') {
 		$self->{'flush_code'} .= $data->[1];
+		$self->{'flush_code'} .= ' "'.$data->[2].'";';
 
 	# Begin of selector.
 	} elsif ($data->[0] eq 's') {

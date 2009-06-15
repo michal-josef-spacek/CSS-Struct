@@ -161,9 +161,9 @@ sub _detect_data {
 		$self->{'processed'} = 1;
 
 	# At-rule.
-	# TODO
 	} elsif ($data->[0] eq 'a') {
 		$self->{'flush_code'} .= $data->[1];
+		$self->{'flush_code'} .= ' "'.$data->[2].'";';
 		$self->{'processed'} = 1;
 
 	# Begin of selector.
