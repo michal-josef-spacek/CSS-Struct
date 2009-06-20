@@ -4,7 +4,6 @@ TODO
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 2. Indentovani pro selectory, pokud jsou hodne dlouhe.
    Plati pro CSS::Structure::Output::Indent
-4. Testy.
 5. Predelat system stejne jako Tags2 na CSS::Structure::Output::Core.
 6.
 
@@ -12,3 +11,6 @@ Applied
 =======
 3. Asi by se mela pridat instrukce. Aby sly vkladat programove bloky.
 OK [20090615] skim
+
+4. Testy.
+OK [20090620] skim
