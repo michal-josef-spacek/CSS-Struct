@@ -167,16 +167,16 @@ __END__
 
 =over 8
 
+=item * B<comment_delimeters>
+
+ TODO
+
 =item * B<output_handler>
 
  Handler for print output strings.
  Default is undef.
 
 =item * B<skip_bad_tags>
-
- TODO
-
-=item * B<comment_delimeters>
 
  TODO
 
