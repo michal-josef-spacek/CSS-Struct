@@ -21,7 +21,8 @@ $ret = $obj->flush;
 
 $obj->reset;
 $obj->put(
-	['s', 'body', 'div'],
+	['s', 'body'],
+	['s', 'div'],
 	['e'],
 );
 $ret = $obj->flush;
