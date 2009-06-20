@@ -27,8 +27,8 @@ sub new {
 	# Set output handler.
 	$self->{'output_handler'} = undef;
 
-	# Skip bad tags.
-	$self->{'skip_bad_tags'} = 0;
+	# Skip bad 'CSS::Structure' types.
+	$self->{'skip_bad_types'} = 0;
 
 	# Skip comments.
 	$self->{'skip_comments'} = 0;
@@ -150,7 +150,7 @@ sub put {
 
 		# Other.
 		} else {
-			if (! $self->{'skip_bad_tags'}) {
+			if (! $self->{'skip_bad_types'}) {
 				err 'Bad type of data.';
 			}
 		}
@@ -344,9 +344,9 @@ __END__
  Must be a GLOB.
  Default value is undef.
 
-=item * B<skip_bad_tags>
+=item * B<skip_bad_types>
 
- Flag, that means bad tags skipping.
+ Flag, that means bad 'CSS::Structure' types skipping.
  Default value is 0.
 
 =item * B<skip_comments>
@@ -377,7 +377,8 @@ __END__
 
  Bad comment delimeters.
  Bad data.
- Bad number of arguments. 'CSS::Structure' structure, 
+ Bad number of arguments. 
+   ('CSS::Structure' structure array),
  Bad type of data.
  Cannot write to output handler.
  No opened selector.
