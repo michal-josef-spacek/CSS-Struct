@@ -69,7 +69,7 @@ sub new {
 #------------------------------------------------------------------------------
 sub flush {
 #------------------------------------------------------------------------------
-# Flush css structure in object.
+# Flush CSS structure in object.
 
 	my ($self, $reset_flag) = @_;
 	my $ouf = $self->{'output_handler'};
@@ -100,7 +100,7 @@ sub flush {
 #------------------------------------------------------------------------------
 sub put {
 #------------------------------------------------------------------------------
-# Put css structure code.
+# Put CSS structure code.
 
 	my ($self, @data) = @_;
 
@@ -112,7 +112,7 @@ sub put {
 			err 'Bad data.';
 		}
 
-		# Split to type and main css structure.
+		# Split to type and main CSS structure.
 		my ($type, @css_struct) = @{$css_structure_ar};
 
 		# Attributes.
