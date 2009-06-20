@@ -26,17 +26,17 @@ sub new {
 	my ($class, @params) = @_;
 	my $self = bless {}, $class;
 
-	# Set output handler.
-	$self->{'output_handler'} = undef;
-
-	# Skip bad tags.
-	$self->{'skip_bad_tags'} = 0;
-
 	# CSS comment delimeters.
 	$self->{'comment_delimeters'} = ['/*', '*/'];
 
 	# Indent string.
 	$self->{'indent_string'} = "\t";
+
+	# Set output handler.
+	$self->{'output_handler'} = undef;
+
+	# Skip bad tags.
+	$self->{'skip_bad_tags'} = 0;
 
 	# Process params.
 	while (@params) {
