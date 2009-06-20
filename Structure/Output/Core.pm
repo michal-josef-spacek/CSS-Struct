@@ -30,21 +30,8 @@ sub new {
 	# Process params.
 	check_params($self, @params);
 
-	# Check to output handler.
-	if (defined $self->{'output_handler'} 
-		&& ref $self->{'output_handler'} ne 'GLOB') {
-
-		err 'Output handler is bad file handler.';
-	}
-
-	# Check to comment delimeters.
-	if ((none { $_ eq $self->{'comment_delimeters'}->[0] }
-		('/*', '<!--'))
-		|| (none { $_ eq $self->{'comment_delimeters'}->[1] }
-		('*/', '-->'))) {
-		
-		err 'Bad comment delimeters.';
-	}
+	# Check parameters to right values.
+	$self->_check_params;
 
 	# Reset.
 	$self->reset;
@@ -221,6 +208,32 @@ sub _default_parameters {
 		# Skip comments.
 		'skip_comments' => 0,
 	};
+}
+
+#------------------------------------------------------------------------------
+sub _check_params {
+#------------------------------------------------------------------------------
+# Check parameters to rigth values.
+
+	my $self = shift;
+
+	# Check to output handler.
+	if (defined $self->{'output_handler'} 
+		&& ref $self->{'output_handler'} ne 'GLOB') {
+
+		err 'Output handler is bad file handler.';
+	}
+
+	# Check to comment delimeters.
+	if ((none { $_ eq $self->{'comment_delimeters'}->[0] }
+		('/*', '<!--'))
+		|| (none { $_ eq $self->{'comment_delimeters'}->[1] }
+		('*/', '-->'))) {
+		
+		err 'Bad comment delimeters.';
+	}
+
+	return;
 }
 
 #------------------------------------------------------------------------------
