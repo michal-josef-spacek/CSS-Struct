@@ -6,7 +6,8 @@ TODO
    Plati pro CSS::Structure::Output::Indent
 5. Predelat system stejne jako Tags2 na CSS::Structure::Output::Core.
 6. Chyba v CSS::Structure::Output::Core s prazdnym telem selectoru.
-7.
+7. Doresit testy podle cover testing.
+8.
 
 Applied
 =======
