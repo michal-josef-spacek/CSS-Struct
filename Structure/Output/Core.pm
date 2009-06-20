@@ -372,6 +372,17 @@ __END__
 
 =back
 
+=head1 ERRORS
+
+ Bad comment delimeters.
+ Bad data.
+ Bad number of arguments. 'Tags2' structure, 
+ Bad type of data.
+ Cannot write to output handler.
+ No opened selector.
+ Output handler is bad file handler.
+ Unknown parameter '%s'.
+
 =head1 DEPENDENCIES
 
 L<Error::Simple::Multiple(3pm)>,
