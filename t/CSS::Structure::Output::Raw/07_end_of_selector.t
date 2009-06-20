@@ -10,14 +10,12 @@ eval {
 		['e'],
 	);
 };
-is($EVAL_ERROR, "Bad ending of selector.\n");
+is($EVAL_ERROR, "No opened selector.\n");
 
 $obj->reset;
-$obj = CSS::Structure::Output::Raw->new;
 $obj->put(
 	['s', 'body'],
 	['e'],
 );
 $ret = $obj->flush;
-#is($ret, 'body{}');
-is($ret, '}');
+is($ret, 'body{}');

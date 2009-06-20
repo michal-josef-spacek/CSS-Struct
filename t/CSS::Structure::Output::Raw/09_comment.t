@@ -9,3 +9,5 @@ $obj->put(
 );
 my $ret = $obj->flush;
 is($ret, '/*comment*/');
+
+# TODO komentare mezi kodem.
