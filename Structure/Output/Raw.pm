@@ -58,7 +58,6 @@ sub _put_comment {
 		unshift @comments, $self->{'comment_delimeters'}->[0];
 		$self->{'flush_code'} .= join $EMPTY_STR, @comments;
 	}
-	# TODO Add $SPACEs
 	return;
 }
 
