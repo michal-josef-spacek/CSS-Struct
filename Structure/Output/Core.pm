@@ -194,11 +194,12 @@ sub _check_arguments {
 #------------------------------------------------------------------------------
 # Check arguments.
 
-	my ($self, $tags_struct_ar, $min_arg_num, $max_arg_num) = @_;
-	my $arg_num = scalar @{$tags_struct_ar};
+	my ($self, $css_structure_ar, $min_arg_num, $max_arg_num) = @_;
+	my $arg_num = scalar @{$css_structure_ar};
 	if ($arg_num < $min_arg_num || $arg_num > $max_arg_num) {
 		err 'Bad number of arguments.', 
-			'\'Tags2\' structure', join ', ', @{$tags_struct_ar};
+			'\'CSS::Structure\' structure', 
+			join ', ', @{$css_structure_ar};
 	}
 	return;
 }
@@ -376,7 +377,7 @@ __END__
 
  Bad comment delimeters.
  Bad data.
- Bad number of arguments. 'Tags2' structure, 
+ Bad number of arguments. 'CSS::Structure' structure, 
  Bad type of data.
  Cannot write to output handler.
  No opened selector.
