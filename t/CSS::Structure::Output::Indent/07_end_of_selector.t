@@ -13,7 +13,6 @@ eval {
 is($EVAL_ERROR, "Bad ending of selector.\n");
 
 $obj->reset;
-$obj = CSS::Structure::Output::Indent->new;
 $obj->put(
 	['s', 'body'],
 	['e'],
