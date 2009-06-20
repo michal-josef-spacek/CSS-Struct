@@ -1,7 +1,6 @@
 # Modules.
 use CSS::Structure::Output::Indent;
-#use Test::More 'tests' => 0;
-use Test::More 'skip_all' => 'Everything bad.';
+use Test::More 'tests' => 3;
 
 print "Testing: Selector.\n";
 my $obj = CSS::Structure::Output::Indent->new;
@@ -9,7 +8,7 @@ $obj->put(
 	['s', 'body'],
 );
 my $ret = $obj->flush;
-#is($ret, 'body{}');
+is($ret, '');
 
 $obj->reset;
 $obj->put(
@@ -17,7 +16,11 @@ $obj->put(
 	['e'],
 );
 $ret = $obj->flush;
-#is($ret, 'body{}');
+my $right_ret = <<'END';
+body {
+}
+END
+is($ret, $right_ret);
 
 $obj->reset;
 $obj->put(
@@ -26,4 +29,8 @@ $obj->put(
 	['e'],
 );
 $ret = $obj->flush;
-#is($ret, 'body,div{}');
+$right_ret = <<'END';
+body, div {
+}
+END
+is($ret, $right_ret);

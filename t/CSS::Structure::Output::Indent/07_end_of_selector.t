@@ -10,7 +10,7 @@ eval {
 		['e'],
 	);
 };
-is($EVAL_ERROR, "Bad ending of selector.\n");
+is($EVAL_ERROR, "No opened selector.\n");
 
 $obj->reset;
 $obj->put(
