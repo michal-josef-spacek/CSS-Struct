@@ -21,14 +21,14 @@ sub new {
 	my ($class, @params) = @_;
 	my $self = bless {}, $class;
 
+	# CSS comment delimeters.
+	$self->{'comment_delimeters'} = ['/*', '*/'];
+
 	# Set output handler.
 	$self->{'output_handler'} = undef;
 
 	# Skip bad tags.
 	$self->{'skip_bad_tags'} = 0;
-
-	# CSS comment delimeters.
-	$self->{'comment_delimeters'} = ['/*', '*/'];
 
 	# Process params.
 	while (@params) {
