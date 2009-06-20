@@ -98,7 +98,8 @@ sub _put_definition {
 	my ($self, $key, $value) = @_;
 	$self->_check_opened_selector;
 	$self->_flush_tmp;
-	$self->{'flush_code'} .= $key.':'.$value.";\n";
+	$self->{'flush_code'} .= $self->{'indent_string'}.$key.':'.$SPACE.
+		$value.";\n";
 	$self->{'processed'} = 1;
 	return;
 }
