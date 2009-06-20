@@ -40,8 +40,7 @@ sub _put_at_rules {
 # At-rules.
 
 	my ($self, $at_rule, $file) = @_;
-	$self->{'flush_code'} .= $at_rule;
-	$self->{'flush_code'} .= ' "'.$file.'";';
+	$self->{'flush_code'} .= $at_rule.' "'.$file.'";';
 	return;
 }
 
