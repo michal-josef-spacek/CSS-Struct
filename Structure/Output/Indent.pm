@@ -164,6 +164,7 @@ sub _flush_tmp {
 		if ($self->{'processed'}) {
 			push @{$self->{'flush_code'}}, $EMPTY_STR;
 		}
+		$self->{'processed'} = 1;
 		push @{$self->{'flush_code'}}, 
 			(join ', ', @{$self->{'tmp_code'}}).' {';
 		$self->{'tmp_code'} = [];
