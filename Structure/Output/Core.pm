@@ -114,7 +114,7 @@ sub put {
 
 		# Attributes.
 		if ($type eq 'a') {
-			$self->_check_arguments(\@css_struct, 1, 1);
+			$self->_check_arguments(\@css_struct, 1, 2);
 			$self->_put_at_rules(@css_struct);
 
 		# Comment.
@@ -142,6 +142,7 @@ sub put {
 
 		# Selector.
 		} elsif ($type eq 's') {
+			$self->_check_arguments(\@css_struct, 1, 1);
 			$self->_put_selector(@css_struct);
 
 		# Other.
@@ -155,7 +156,7 @@ sub put {
 	# Auto-flush.
 	if ($self->{'auto_flush'}) {
 		$self->flush;
-		$self->{'flush_code'} = [];
+		$self->_reset_flush_code;
 	}
 
 	return;
@@ -169,8 +170,11 @@ sub reset {
 
 	my $self = shift;
 
+	# Tmp code.
+	$self->{'tmp_code'} = [];
+
 	# Flush code.
-	$self->{'flush_code'} = [];
+	$self->_reset_flush_code;
 
 	# Open selector flag.
 	$self->{'open_selector'} = 0;
@@ -197,11 +201,23 @@ sub _check_arguments {
 }
 
 #------------------------------------------------------------------------------
+sub _check_opened_selector {
+#------------------------------------------------------------------------------
+# Check to opened selector.
+
+	my $self = shift;
+	if (! $self->{'open_selector'}) {
+		err 'No opened selector.';
+	}
+	return;
+}
+
+#------------------------------------------------------------------------------
 sub _put_at_rules {
 #------------------------------------------------------------------------------
 # At-rules.
 
-	my ($self, $at_rule) = @_;
+	my ($self, $at_rule, $file) = @_;
 	push @{$self->{'flush_code'}}, 'At-rule';
 	return;
 }
@@ -261,8 +277,18 @@ sub _put_selector {
 #------------------------------------------------------------------------------
 # Selectors.
 
-	my ($self, @selectors) = @_;
+	my ($self, $selector) = @_;
 	push @{$self->{'flush_code'}}, 'Selector';
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _reset_flush_code {
+#------------------------------------------------------------------------------
+# Reset flush code.
+
+	my $self = shift;
+	$self->{'flush_code'} = [];
 	return;
 }
 
