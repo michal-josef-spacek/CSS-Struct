@@ -4,7 +4,6 @@ TODO
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 2. Indentovani pro selectory, pokud jsou hodne dlouhe.
    Plati pro CSS::Structure::Output::Indent
-5. Predelat system stejne jako Tags2 na CSS::Structure::Output::Core.
 7. Doresit testy podle cover testing.
 8. Resit callbacks?
 9. Dodelat dokumentaci.
@@ -19,4 +18,7 @@ OK [20090615] skim
 OK [20090620] skim
 
 6. Chyba v CSS::Structure::Output::Raw s prazdnym telem selectoru.
+OK [20090620] skim
+
+5. Predelat system stejne jako Tags2 na CSS::Structure::Output::Core.
 OK [20090620] skim
