@@ -267,16 +267,16 @@ __END__
 =head1 SYNOPSIS
 
  use CSS::Structure::Output::Indent;
- my $t = CSS::Structure::Output::Indent->new(
+ my $css = CSS::Structure::Output::Indent->new(
          'output_handler' => \*STDOUT,
  );
- $t->put(
+ $css->put(
          ['s', 'blam'],
          ['d', 'weight', '100px'],
          ['e'],
  );
- $t->flush;
- $t->reset;
+ $css->flush;
+ $css->reset;
 
 =head1 METHODS
 
