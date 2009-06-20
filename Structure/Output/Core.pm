@@ -19,19 +19,12 @@ sub new {
 # Constructor.
 
 	my ($class, @params) = @_;
-	my $self = bless {}, $class;
 
-	# CSS comment delimeters.
-	$self->{'comment_delimeters'} = ['/*', '*/'];
+	# Get default parameters.
+	my $self = _default_parameters();
 
-	# Set output handler.
-	$self->{'output_handler'} = undef;
-
-	# Skip bad 'CSS::Structure' types.
-	$self->{'skip_bad_types'} = 0;
-
-	# Skip comments.
-	$self->{'skip_comments'} = 0;
+	# Create object.
+	$self = bless $self, $class;
 
 	# Process params.
 	while (@params) {
@@ -214,6 +207,26 @@ sub _check_opened_selector {
 		err 'No opened selector.';
 	}
 	return;
+}
+
+#------------------------------------------------------------------------------
+sub _default_parameters {
+#------------------------------------------------------------------------------
+# Default parameters.
+
+	return {
+		# CSS comment delimeters.
+		'comment_delimeters' => ['/*', '*/'],
+
+		# Set output handler.
+		'output_handler' => undef,
+
+		# Skip bad 'CSS::Structure' types.
+		'skip_bad_types' => 0,
+
+		# Skip comments.
+		'skip_comments' => 0,
+	};
 }
 
 #------------------------------------------------------------------------------
