@@ -8,8 +8,6 @@ use strict;
 use warnings;
 
 # Modules.
-use Error::Simple::Multiple qw(err);
-use List::MoreUtils qw(none);
 use Readonly;
 
 # Constants.
@@ -128,7 +126,7 @@ sub _reset_flush_code {
 
 	my $self = shift;
 	$self->{'flush_code'} = $EMPTY_STR;
-	reset;
+	return;
 }
 
 1;
@@ -202,13 +200,12 @@ TODO
 
 =head1 DEPENDENCIES
 
-L<Error::Simple::Multiple(3pm)>,
-L<List::MoreUtils(3pm)>,
 L<Readonly(3pm)>.
 
 =head1 SEE ALSO
 
 L<CSS::Structure(3pm)>,
+L<CSS::Structure::Utils(3pm)>,
 L<CSS::Structure::Output::Core(3pm)>,
 L<CSS::Structure::Output::Indent(3pm)>.
 
