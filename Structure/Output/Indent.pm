@@ -160,14 +160,14 @@ sub _flush_tmp {
 
 	my $self = shift;
 	if (@{$self->{'tmp_code'}}) {
-		$self->{'indent'}->add;
 		if ($self->{'processed'}) {
 			push @{$self->{'flush_code'}}, $EMPTY_STR;
 		}
-		$self->{'processed'} = 1;
 		push @{$self->{'flush_code'}}, 
 			(join ', ', @{$self->{'tmp_code'}}).' {';
 		$self->{'tmp_code'} = [];
+		$self->{'processed'} = 1;
+		$self->{'indent'}->add;
 	}
 	return;
 }
