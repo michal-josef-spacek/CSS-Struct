@@ -21,14 +21,35 @@ our $VERSION = 0.01;
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
+sub _default_parameters {
+#------------------------------------------------------------------------------
+# Default parameters.
+
+	my $self = shift;
+
+	# Default parameters from SUPER.
+	$self->SUPER::_default_parameters;
+
+	# Comment after selector.
+	$self->{'comment_after_selector'} = 0;
+
+	return;
+}
+
+#------------------------------------------------------------------------------
 sub _flush_tmp {
 #------------------------------------------------------------------------------
 # Flush $self->{'tmp_code'}.
 
 	my $self = shift;
 	if (@{$self->{'tmp_code'}}) {
-		$self->{'flush_code'} .= (join ',', @{$self->{'tmp_code'}}).
-			'{';
+		my $comment = $EMPTY_STR;
+		if ($self->{'comment_after_selector'}) {
+			$comment = pop @{$self->{'tmp_code'}};
+		}
+		pop @{$self->{'tmp_code'}};
+		$self->{'flush_code'} .= 
+			(join $EMPTY_STR, @{$self->{'tmp_code'}}).'{'.$comment;
 		$self->{'tmp_code'} = [];
 	}
 	return;
@@ -50,11 +71,16 @@ sub _put_comment {
 # Comment.
 
 	my ($self, @comments) = @_;
-	$self->_flush_tmp;
 	if (! $self->{'skip_comments'}) {
 		push @comments, $self->{'comment_delimeters'}->[1];
 		unshift @comments, $self->{'comment_delimeters'}->[0];
-		$self->{'flush_code'} .= join $EMPTY_STR, @comments;
+		my $comment = join $EMPTY_STR, @comments;
+		if (@{$self->{'tmp_code'}}) {
+			push @{$self->{'tmp_code'}}, $comment;
+			$self->{'comment_after_selector'} = 1;
+		} else {
+			$self->{'flush_code'} .= $comment;
+		}
 	}
 	return;
 }
@@ -113,8 +139,9 @@ sub _put_selector {
 # Selectors.
 
 	my ($self, $selector) = @_;
-	push @{$self->{'tmp_code'}}, $selector;
+	push @{$self->{'tmp_code'}}, $selector, ',';
 	$self->{'open_selector'} = 1;
+	$self->{'comment_after_selector'} = 0;
 	return;
 }
 
