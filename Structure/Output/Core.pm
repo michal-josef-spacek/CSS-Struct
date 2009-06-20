@@ -7,6 +7,7 @@ use strict;
 use warnings;
 
 # Modules.
+use CSS::Structure::Utils qw(check_params);
 use Error::Simple::Multiple qw(err);
 use List::MoreUtils qw(none);
 
@@ -27,14 +28,7 @@ sub new {
 	$self = bless $self, $class;
 
 	# Process params.
-	while (@params) {
-		my $key = shift @params;
-		my $val = shift @params;
-		if (! exists $self->{$key}) {
-			err "Unknown parameter '$key'.";
-		}
-		$self->{$key} = $val;
-	}
+	check_params($self, @params);
 
 	# Check to output handler.
 	if (defined $self->{'output_handler'} 
@@ -400,12 +394,14 @@ __END__
 
 =head1 DEPENDENCIES
 
+L<CSS::Structure::Utils(3pm)>,
 L<Error::Simple::Multiple(3pm)>,
 L<List::MoreUtils(3pm)>.
 
 =head1 SEE ALSO
 
 L<CSS::Structure(3pm)>,
+L<CSS::Structure::Utils(3pm)>,
 L<CSS::Structure::Output::Indent(3pm)>,
 L<CSS::Structure::Output::Raw(3pm)>.
 
