@@ -3,6 +3,7 @@ package CSS::Structure::Output::Raw;
 #------------------------------------------------------------------------------
 
 # Pragmas.
+use base qw(CSS::Structure::Output::Core);
 use strict;
 use warnings;
 
@@ -18,194 +19,8 @@ Readonly::Scalar my $EMPTY_STR => q{};
 our $VERSION = 0.01;
 
 #------------------------------------------------------------------------------
-sub new {
-#------------------------------------------------------------------------------
-# Constructor.
-
-	my ($class, @params) = @_;
-	my $self = bless {}, $class;
-
-	# Set output handler.
-	$self->{'output_handler'} = undef;
-
-	# Skip bad tags.
-	$self->{'skip_bad_tags'} = 0;
-
-	# CSS comment delimeters.
-	$self->{'comment_delimeters'} = ['/*', '*/'];
-
-	# Process params.
-	while (@params) {
-		my $key = shift @params;
-		my $val = shift @params;
-		if (! exists $self->{$key}) {
-			err "Unknown parameter '$key'.";
-		}
-		$self->{$key} = $val;
-	}
-
-	# Check to output handler.
-	if (defined $self->{'output_handler'} 
-		&& ref $self->{'output_handler'} ne 'GLOB') {
-
-		err 'Output handler is bad file handler.';
-	}
-
-	# Check to comment delimeters.
-	if ((none { $_ eq $self->{'comment_delimeters'}->[0] }
-		('/*', '<!--'))
-		|| (none { $_ eq $self->{'comment_delimeters'}->[1] }
-		('*/', '-->'))) {
-		
-		err 'Bad comment delimeters.';
-	}
-
-	# Reset.
-	$self->reset;
-
-	# Object.
-	return $self;
-}
-
-#------------------------------------------------------------------------------
-sub flush {
-#------------------------------------------------------------------------------
-# Flush css structure in object.
-
-	my $self = shift;
-	my $ouf = $self->{'output_handler'};
-	if ($ouf) {
-		print {$ouf} $self->{'flush_code'};
-		return;
-	} else {
-		return $self->{'flush_code'};
-	}
-}
-
-#------------------------------------------------------------------------------
-sub put {
-#------------------------------------------------------------------------------
-# Put css structure code.
-
-	my ($self, @data) = @_;
-
-	# For every data.
-	foreach my $dat (@data) {
-
-		# Bad data.
-		if (ref $dat ne 'ARRAY') {
-			err 'Bad data.';
-		}
-
-		# Detect and process data.
-		$self->_detect_data($dat);
-	}
-	return;
-}
-
-#------------------------------------------------------------------------------
-sub reset {
-#------------------------------------------------------------------------------
-# Resets internal variables.
-
-	my $self = shift;
-
-	# Flush code.
-	$self->{'flush_code'} = $EMPTY_STR;
-
-	# Tmp code.
-	$self->{'tmp_code'} = [];
-
-	# Open selector flag.
-	$self->{'open_selector'} = 0;
-
-	return;
-}
-
-#------------------------------------------------------------------------------
 # Private methods.
 #------------------------------------------------------------------------------
-
-#------------------------------------------------------------------------------
-sub _comment {
-#------------------------------------------------------------------------------
-# Process comment.
-
-	my ($self, $data) = @_;
-	shift @{$data};
-	$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0];
-	foreach my $d (@{$data}) {
-		$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d}
-			: $d;
-	}
-	$self->{'flush_code'} .= $self->{'comment_delimeters'}->[1];
-	return;
-}
-
-#------------------------------------------------------------------------------
-sub _detect_data {
-#------------------------------------------------------------------------------
-# Detect and process data.
-
-	my ($self, $data) = @_;
-
-	# At-rule.
-	if ($data->[0] eq 'a') {
-		$self->{'flush_code'} .= $data->[1];
-		$self->{'flush_code'} .= ' "'.$data->[2].'";';
-
-	# Comment.
-	} elsif ($data->[0] eq 'c') {
-		$self->_comment($data);
-
-	# Definitions.
-	} elsif ($data->[0] eq 'd') {
-		if (scalar @{$self->{'tmp_code'}}) {
-			$self->_flush_tmp;
-		}
-		if (! $self->{'open_selector'}) {
-			err 'No selector.';
-		}
-		shift @{$data};
-		while (@{$data}) {
-			my $par = shift @{$data};
-			my $val = shift @{$data};
-			$self->{'flush_code'} .= $par.':'.$val.';';
-		}
-
-	# End of selector.
-	} elsif ($data->[0] eq 'e') {
-		if (! $self->{'open_selector'}) {
-			err 'Bad ending of selector.';
-		}
-		$self->{'flush_code'} .= '}';
-		$self->{'open_selector'} = 0;
-
-	# Instruction.
-	} elsif ($data->[0] eq 'i') {
-		$self->_comment($data);
-
-	# Raw data.
-	} elsif ($data->[0] eq 'r') {
-		shift @{$data};
-		while (@{$data}) {
-			my $data = shift @{$data};
-			$self->{'flush_code'} .= $data;
-		}
-
-	# Begin of selector.
-	} elsif ($data->[0] eq 's') {
-		push @{$self->{'tmp_code'}}, "$data->[1]";
-		$self->{'open_selector'} = 1;
-
-	# Other.
-	} else {
-		if ($self->{'skip_bad_tags'}) {
-			err 'Bad type of data.';
-		}
-	}
-	return;
-}
 
 #------------------------------------------------------------------------------
 sub _flush_tmp {
@@ -213,9 +28,105 @@ sub _flush_tmp {
 # Flush $self->{'tmp_code'}.
 
 	my $self = shift;
-	$self->{'flush_code'} .= join(',', @{$self->{'tmp_code'}}).'{';
-	$self->{'tmp_code'} = [];
+	if (@{$self->{'tmp_code'}}) {
+		$self->{'flush_code'} .= (join ',', @{$self->{'tmp_code'}}).
+			'{';
+		$self->{'tmp_code'} = [];
+	}
 	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_at_rules {
+#------------------------------------------------------------------------------
+# At-rules.
+
+	my ($self, $at_rule, $file) = @_;
+	$self->{'flush_code'} .= $at_rule;
+	$self->{'flush_code'} .= ' "'.$file.'";';
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_comment {
+#------------------------------------------------------------------------------
+# Comment.
+
+	my ($self, @comments) = @_;
+	push @comments, $self->{'comment_delimeters'}->[1];
+	unshift @comments, $self->{'comment_delimeters'}->[0];
+	$self->{'flush_code'} .= join $EMPTY_STR, @comments;
+	# TODO Add $SPACEs
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_definition {
+#------------------------------------------------------------------------------
+# Definition.
+
+	my ($self, $key, $value) = @_;
+	$self->_check_opened_selector;
+	$self->_flush_tmp;
+	$self->{'flush_code'} .= $key.':'.$value.';';
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_end_of_selector {
+#------------------------------------------------------------------------------
+# End of selector.
+
+	my $self = shift;
+	$self->_check_opened_selector;
+	$self->_flush_tmp;
+	$self->{'flush_code'} .= '}';
+	$self->{'open_selector'} = 0;
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_instruction {
+#------------------------------------------------------------------------------
+# Instruction.
+
+	my ($self, $target, $code) = @_;
+	$self->_put_comment($target, $code);
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_raw {
+#------------------------------------------------------------------------------
+# Raw data.
+
+	my ($self, @raw_data) = @_;
+
+	# To flush code.
+	$self->{'flush_code'} .= join $EMPTY_STR, @raw_data;
+
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_selector {
+#------------------------------------------------------------------------------
+# Selectors.
+
+	my ($self, $selector) = @_;
+	push @{$self->{'tmp_code'}}, $selector;
+	$self->{'open_selector'} = 1;
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _reset_flush_code {
+#------------------------------------------------------------------------------
+# Reset flush code.
+
+	my $self = shift;
+	$self->{'flush_code'} = $EMPTY_STR;
+	reset;
 }
 
 1;
@@ -233,16 +144,16 @@ __END__
 =head1 SYNOPSIS
 
  use CSS::Structure::Output::Raw;
- my $t = CSS::Structure::Output::Raw->new(
-   'output_handler' => \*STDOUT,
+ my $css = CSS::Structure::Output::Raw->new(
+         'output_handler' => \*STDOUT,
  );
- $t->put(['s', 'blam'],
+ $css->put(
+         ['s', 'blam'],
          ['d', 'weight', '100px'],
          ['e'],
  );
- $t->finalize;
- $t->flush;
- $t->reset;
+ $css->flush;
+ $css->reset;
 
 =head1 METHODS
 
@@ -283,6 +194,10 @@ __END__
 
 =back
 
+=head1 ERRORS
+
+TODO
+
 =head1 DEPENDENCIES
 
 L<Error::Simple::Multiple(3pm)>,
@@ -292,6 +207,7 @@ L<Readonly(3pm)>.
 =head1 SEE ALSO
 
 L<CSS::Structure(3pm)>,
+L<CSS::Structure::Output::Core(3pm)>,
 L<CSS::Structure::Output::Indent(3pm)>.
 
 =head1 AUTHOR
