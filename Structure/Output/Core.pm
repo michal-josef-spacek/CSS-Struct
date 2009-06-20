@@ -30,6 +30,9 @@ sub new {
 	# Skip bad tags.
 	$self->{'skip_bad_tags'} = 0;
 
+	# Skip comments.
+	$self->{'skip_comments'} = 1;
+
 	# Process params.
 	while (@params) {
 		my $key = shift @params;
@@ -333,6 +336,10 @@ __END__
  TODO
 
 =item * B<comment_delimeters>
+
+ TODO
+
+=item * B<skip_comments>
 
  TODO
 
