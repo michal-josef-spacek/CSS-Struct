@@ -31,6 +31,7 @@ $obj->put(
 $ret = $obj->flush;
 my $right_ret = <<'END';
 body {
+
 	/* comment */
 }
 END
@@ -47,6 +48,7 @@ $obj->put(
 $ret = $obj->flush;
 $right_ret = <<'END';
 body {
+
 	/* comment1 */
 	/* comment2 */
 }
