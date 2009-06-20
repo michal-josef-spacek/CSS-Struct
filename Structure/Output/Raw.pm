@@ -165,7 +165,7 @@ __END__
 
 =head1 NAME
 
- CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to css code.
+ CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to CSS code.
 
 =head1 SYNOPSIS
 
