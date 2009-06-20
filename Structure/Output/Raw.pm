@@ -176,7 +176,7 @@ __END__
  Handler for print output strings.
  Default is undef.
 
-=item * B<skip_bad_tags>
+=item * B<skip_bad_types>
 
  TODO
 

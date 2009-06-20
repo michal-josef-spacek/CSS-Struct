@@ -35,8 +35,8 @@ sub new {
 	# Set output handler.
 	$self->{'output_handler'} = undef;
 
-	# Skip bad tags.
-	$self->{'skip_bad_tags'} = 0;
+	# Skip bad 'CSS::Structure' types.
+	$self->{'skip_bad_types'} = 0;
 
 	# Process params.
 	while (@params) {
@@ -231,7 +231,7 @@ sub _detect_data {
 
 	# Other.
 	} else {
-		if ($self->{'skip_bad_tags'}) {
+		if ($self->{'skip_bad_types'}) {
 			err 'Bad type of data.';
 		}
 	}
@@ -297,7 +297,7 @@ __END__
  Handler for print output strings.
  Default is undef.
 
-=item * B<skip_bad_tags>
+=item * B<skip_bad_types>
 
  TODO
 
