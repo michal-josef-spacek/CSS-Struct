@@ -65,7 +65,7 @@ sub _put_at_rules {
 # At-rules.
 
 	my ($self, $at_rule, $file) = @_;
-	$self->{'flush_code'} .= $at_rule.' "'.$file."\";\n";
+	push @{$self->{'flush_code'}}, $at_rule.' "'.$file.'";';
 	$self->{'processed'} = 1;
 	return;
 }
@@ -81,10 +81,10 @@ sub _put_comment {
 		push @comments, $SPACE.$self->{'comment_delimeters'}->[1];
 		unshift @comments, $self->{'comment_delimeters'}->[0].$SPACE;
 		if ($self->{'processed'}) {
-			$self->{'flush_code'} .= "\n";
+			push @{$self->{'flush_code'}}, $EMPTY_STR;
 		}
-		$self->{'flush_code'} .= $self->{'indent'}->get.
-			(join $EMPTY_STR, @comments)."\n";
+		push @{$self->{'flush_code'}}, $self->{'indent'}->get.
+			(join $EMPTY_STR, @comments);
 		$self->{'processed'} = 0;
 	}
 	return;
@@ -98,8 +98,8 @@ sub _put_definition {
 	my ($self, $key, $value) = @_;
 	$self->_check_opened_selector;
 	$self->_flush_tmp;
-	$self->{'flush_code'} .= $self->{'indent'}->get.$key.':'.$SPACE.
-		$value.";\n";
+	push @{$self->{'flush_code'}}, $self->{'indent'}->get.$key.':'.
+		$SPACE.$value.';';
 	$self->{'processed'} = 1;
 	return;
 }
@@ -113,7 +113,7 @@ sub _put_end_of_selector {
 	$self->_check_opened_selector;
 	$self->_flush_tmp;
 	$self->{'indent'}->remove;
-	$self->{'flush_code'} .= "}\n";
+	push @{$self->{'flush_code'}}, '}';
 	$self->{'open_selector'} = 0;
 	$self->{'processed'} = 1;
 	return;
@@ -137,7 +137,7 @@ sub _put_raw {
 	my ($self, @raw_data) = @_;
 
 	# To flush code.
-	$self->{'flush_code'} .= join $EMPTY_STR, @raw_data;
+	push @{$self->{'flush_code'}}, (join $EMPTY_STR, @raw_data);
 
 	return;
 }
@@ -150,7 +150,6 @@ sub _put_selector {
 	my ($self, $selector) = @_;
 	push @{$self->{'tmp_code'}}, $selector;
 	$self->{'open_selector'} = 1;
-	$self->{'indent'}->add;
 	return;
 }
 
@@ -161,11 +160,12 @@ sub _flush_tmp {
 
 	my $self = shift;
 	if (@{$self->{'tmp_code'}}) {
+		$self->{'indent'}->add;
 		if ($self->{'processed'}) {
-			$self->{'flush_code'} .= "\n";
+			push @{$self->{'flush_code'}}, $EMPTY_STR;
 		}
-		$self->{'flush_code'} .= (join ', ', @{$self->{'tmp_code'}}).
-			" {\n";
+		push @{$self->{'flush_code'}}, 
+			(join ', ', @{$self->{'tmp_code'}}).' {';
 		$self->{'tmp_code'} = [];
 	}
 	return;
@@ -177,7 +177,7 @@ sub _reset_flush_code {
 # Reset flush code.
 
 	my $self = shift;
-	$self->{'flush_code'} = $EMPTY_STR;
+	$self->{'flush_code'} = [];
 	return;
 }
 
