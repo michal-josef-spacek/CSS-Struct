@@ -1,5 +1,6 @@
 # Modules.
 use CSS::Structure::Output::Raw;
+use English qw(-no_match_vars);
 use Test::More 'tests' => 3;
 
 print "Testing: new() plain constructor.\n";
@@ -11,4 +12,4 @@ print "Testing: new() empty constructor.\n";
 eval {
 	$obj = CSS::Structure::Output::Raw->new('');
 };
-is($@, "Unknown parameter ''.\n");
+is($EVAL_ERROR, "Unknown parameter ''.\n");
