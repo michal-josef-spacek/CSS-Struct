@@ -1,0 +1,27 @@
+# Modules.
+use CSS::Structure::Output::Core;
+use Test::More 'tests' => 1;
+
+print "Testing: put() method.\n";
+my $obj = CSS::Structure::Output::Core->new;
+$obj->put(
+	['a', 'at-rule'],
+	['c', 'comment'],
+	['d', 'definition'],
+	['e'],
+	['i', 'target', 'code'],
+	['r', 'raw data'],
+	['s', 'selector'],
+);
+my $ret = $obj->flush;
+my $right_ret = <<'END';
+At-rule
+Comment
+Definition
+End of selector
+Instruction
+Raw data
+Selector
+END
+chomp $right_ret;
+is($ret, $right_ret);
