@@ -335,6 +335,11 @@ __END__
 
  TODO
 
+=item * B<output_handler>
+
+ TODO
+ Default value is undef.
+
 =item * B<skip_bad_tags>
 
  TODO
