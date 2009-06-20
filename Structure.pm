@@ -27,9 +27,6 @@ __END__
 
  Reference to array.
  [type, data]
- data are:
- - normal scalar.
- - reference to scalar.
 
  Types:
  a - At-rules.
@@ -39,6 +36,15 @@ __END__
  i - Instruction.
  r - Raw section.
  s - Selector.
+
+ Data:
+ a - $at_rule
+ c - @comment
+ d - $key, $value
+ e - No argument.
+ i - $target, $code
+ r - @raw_data
+ s - @selectors
 
 =head1 DEPENDENCIES
 
