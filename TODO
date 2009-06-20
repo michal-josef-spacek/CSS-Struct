@@ -7,7 +7,10 @@ TODO
 7. Doresit testy podle cover testing.
 8. Resit callbacks?
 9. Dodelat dokumentaci.
-10.
+10. Dokumentace k CSS::Structure::Utils.
+11. Doresit chyby v CSS::Structure::Output::Indent s komentari mezi selectory.
+12. Testy k CSS::Structure::Utils.
+13.
 
 Applied
 =======
