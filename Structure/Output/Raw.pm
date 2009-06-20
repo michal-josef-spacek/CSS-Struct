@@ -53,9 +53,11 @@ sub _put_comment {
 # Comment.
 
 	my ($self, @comments) = @_;
-	push @comments, $self->{'comment_delimeters'}->[1];
-	unshift @comments, $self->{'comment_delimeters'}->[0];
-	$self->{'flush_code'} .= join $EMPTY_STR, @comments;
+	if (! $self->{'skip_comments'}) {
+		push @comments, $self->{'comment_delimeters'}->[1];
+		unshift @comments, $self->{'comment_delimeters'}->[0];
+		$self->{'flush_code'} .= join $EMPTY_STR, @comments;
+	}
 	# TODO Add $SPACEs
 	return;
 }
