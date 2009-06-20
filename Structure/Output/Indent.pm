@@ -275,7 +275,6 @@ __END__
          ['d', 'weight', '100px'],
          ['e'],
  );
- $t->finalize;
  $t->flush;
  $t->reset;
 
@@ -317,6 +316,10 @@ __END__
  TODO
 
 =back
+
+=head1 ERRORS
+
+TODO
 
 =head1 DEPENDENCIES
 
