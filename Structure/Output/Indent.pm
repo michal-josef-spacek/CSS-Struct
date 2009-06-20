@@ -45,12 +45,15 @@ sub _default_parameters {
 #------------------------------------------------------------------------------
 # Default parameters.
 
-	my $self = SUPER::_default_parameters();
+	my $self = shift;
+
+	# Default parameters from SUPER.
+	$self->SUPER::_default_parameters;
 
 	# Indent string.
 	$self->{'indent_string'} = "\t";
 
-	return $self;
+	return;
 }
 
 #------------------------------------------------------------------------------

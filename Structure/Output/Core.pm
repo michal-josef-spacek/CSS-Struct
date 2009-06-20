@@ -21,11 +21,11 @@ sub new {
 
 	my ($class, @params) = @_;
 
-	# Get default parameters.
-	my $self = _default_parameters();
-
 	# Create object.
-	$self = bless $self, $class;
+	my $self = bless {}, $class;
+
+	# Get default parameters.
+	$self->_default_parameters;
 
 	# Process params.
 	check_params($self, @params);
@@ -195,19 +195,21 @@ sub _default_parameters {
 #------------------------------------------------------------------------------
 # Default parameters.
 
-	return {
-		# CSS comment delimeters.
-		'comment_delimeters' => ['/*', '*/'],
+	my $self = shift;
 
-		# Set output handler.
-		'output_handler' => undef,
+	# CSS comment delimeters.
+	$self->{'comment_delimeters'} = ['/*', '*/'];
 
-		# Skip bad 'CSS::Structure' types.
-		'skip_bad_types' => 0,
+	# Set output handler.
+	$self->{'output_handler'} = undef;
 
-		# Skip comments.
-		'skip_comments' => 0,
-	};
+	# Skip bad 'CSS::Structure' types.
+	$self->{'skip_bad_types'} = 0;
+
+	# Skip comments.
+	$self->{'skip_comments'} = 0;
+
+	return;
 }
 
 #------------------------------------------------------------------------------
