@@ -1,6 +1,6 @@
 # Modules.
 use CSS::Structure::Output::Raw;
-use Test::More 'tests' => 6;
+use Test::More 'tests' => 7;
 
 print "Testing: Without comment.\n";
 my $obj = CSS::Structure::Output::Raw->new(
@@ -62,3 +62,14 @@ $obj->put(
 );
 $ret = $obj->flush;
 is($ret, 'body{attr1:value1;/*comment*/attr2:value2;}');
+
+$obj->reset;
+$obj->put(
+	['c', 'comment1'],
+	['s', 'body'],
+	['c', 'comment2'],
+	['s', 'div'],
+	['e'],
+);
+$ret = $obj->flush;
+is($ret, '/*comment1*/body,/*comment2*/div{}');

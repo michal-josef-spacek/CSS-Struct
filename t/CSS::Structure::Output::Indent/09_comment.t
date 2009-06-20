@@ -1,6 +1,6 @@
 # Modules.
 use CSS::Structure::Output::Indent;
-use Test::More 'tests' => 8;
+use Test::More 'tests' => 9;
 
 print "Testing: Without comment.\n";
 my $obj = CSS::Structure::Output::Indent->new(
@@ -130,6 +130,26 @@ body {
 	/* comment1 */
 	/* comment2 */
 	attr2: value2;
+}
+END
+chomp $right_ret;
+is($ret, $right_ret);
+
+$obj->reset;
+$obj->put(
+	['c', 'comment1'],
+	['s', 'body'],
+	['c', 'comment2'],
+	['s', 'div'],
+	['e'],
+);
+$ret = $obj->flush;
+$right_ret = <<'END';
+/* comment1 */
+body,
+
+/* comment2 */
+div {
 }
 END
 chomp $right_ret;
