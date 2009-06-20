@@ -4,6 +4,7 @@ Structure.pm
 Structure/Output/Core.pm
 Structure/Output/Indent.pm
 Structure/Output/Raw.pm
+Structure/Utils.pm
 t/CSS::Structure/00_use.t
 t/CSS::Structure/01_version.t
 t/CSS::Structure/02_pod_coverage.t
