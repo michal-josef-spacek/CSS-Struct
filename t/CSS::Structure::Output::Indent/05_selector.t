@@ -20,6 +20,7 @@ my $right_ret = <<'END';
 body {
 }
 END
+chomp $right_ret;
 is($ret, $right_ret);
 
 $obj->reset;
@@ -33,4 +34,5 @@ $right_ret = <<'END';
 body, div {
 }
 END
+chomp $right_ret;
 is($ret, $right_ret);

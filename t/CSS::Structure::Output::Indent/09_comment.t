@@ -34,6 +34,7 @@ body {
 	/* comment */
 }
 END
+chomp $right_ret;
 is($ret, $right_ret);
 
 $obj->reset;
@@ -48,8 +49,10 @@ $ret = $obj->flush;
 $right_ret = <<'END';
 body {
 	attr1: value1;
+
 	/* comment */
 	attr2: value2;
 }
 END
+chomp $right_ret;
 is($ret, $right_ret);
