@@ -331,11 +331,11 @@ __END__
 
 =over 8
 
-=item * B<skip_bad_tags>
+=item * B<comment_delimeters>
 
  TODO
 
-=item * B<comment_delimeters>
+=item * B<skip_bad_tags>
 
  TODO
 
