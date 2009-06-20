@@ -203,6 +203,9 @@ sub _default_parameters {
 	# Set output handler.
 	$self->{'output_handler'} = undef;
 
+	# Output separator.
+	$self->{'output_sep'} = "\n";
+
 	# Skip bad 'CSS::Structure' types.
 	$self->{'skip_bad_types'} = 0;
 
@@ -365,6 +368,11 @@ __END__
  Handler for print output strings.
  Must be a GLOB.
  Default value is undef.
+
+=item * B<output_sep>
+
+ Output separator.
+ Default value is newline.
 
 =item * B<skip_bad_types>
 
