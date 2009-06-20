@@ -38,13 +38,13 @@ __END__
  s - Selector.
 
  Data:
- a - $at_rule
+ a - $at_rule, $file
  c - @comment
  d - $key, $value
  e - No argument.
  i - $target, $code
  r - @raw_data
- s - @selectors
+ s - $selector
 
 =head1 DEPENDENCIES
 
