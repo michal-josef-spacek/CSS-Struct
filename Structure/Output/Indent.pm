@@ -3,12 +3,11 @@ package CSS::Structure::Output::Indent;
 #------------------------------------------------------------------------------
 
 # Pragmas.
+use base qw(CSS::Structure::Output::Core);
 use strict;
 use warnings;
 
 # Modules.
-use Error::Simple::Multiple qw(err);
-use List::MoreUtils qw(none);
 use Readonly;
 
 # Constants.
@@ -19,109 +18,14 @@ Readonly::Scalar my $SPACE => q{ };
 our $VERSION = 0.01;
 
 #------------------------------------------------------------------------------
-sub new {
-#------------------------------------------------------------------------------
-# Constructor.
-
-	my ($class, @params) = @_;
-	my $self = bless {}, $class;
-
-	# CSS comment delimeters.
-	$self->{'comment_delimeters'} = ['/*', '*/'];
-
-	# Indent string.
-	$self->{'indent_string'} = "\t";
-
-	# Set output handler.
-	$self->{'output_handler'} = undef;
-
-	# Skip bad 'CSS::Structure' types.
-	$self->{'skip_bad_types'} = 0;
-
-	# Process params.
-	while (@params) {
-		my $key = shift @params;
-		my $val = shift @params;
-		if (! exists $self->{$key}) {
-			err "Unknown parameter '$key'.";
-		}
-		$self->{$key} = $val;
-	}
-
-	# Check to output handler.
-	if (defined $self->{'output_handler'} 
-		&& ref $self->{'output_handler'} ne 'GLOB') {
-
-		err 'Output handler is bad file handler.';
-	}
-
-	# Check to comment delimeters.
-	if ((none { $_ eq $self->{'comment_delimeters'}->[0] }
-		('/*', '<!--'))
-		|| (none { $_ eq $self->{'comment_delimeters'}->[1] }
-		('*/', '-->'))) {
-		
-		err 'Bad comment delimeters.';
-	}
-
-	# Reset.
-	$self->reset;
-
-	# Object.
-	return $self;
-}
-
-#------------------------------------------------------------------------------
-sub flush {
-#------------------------------------------------------------------------------
-# Flush css structure in object.
-
-	my $self = shift;
-	my $ouf = $self->{'output_handler'};
-	if ($ouf) {
-		print {$ouf} $self->{'flush_code'};
-		return;
-	} else {
-		return $self->{'flush_code'};
-	}
-}
-
-#------------------------------------------------------------------------------
-sub put {
-#------------------------------------------------------------------------------
-# Put css structure code.
-
-	my ($self, @data) = @_;
-
-	# For every data.
-	foreach my $dat (@data) {
-
-		# Bad data.
-		if (ref $dat ne 'ARRAY') {
-			err 'Bad data.';
-		}
-
-		# Detect and process data.
-		$self->_detect_data($dat);
-	}
-	return;
-}
-
-#------------------------------------------------------------------------------
 sub reset {
 #------------------------------------------------------------------------------
 # Resets internal variables.
 
 	my $self = shift;
 
-	# Flush code.
-	$self->{'flush_code'} = $EMPTY_STR;
-
-	# Tmp code.
-	$self->{'tmp_code'} = [];
-
-	# Open selector flag.
-	$self->{'open_selector'} = 0;
+	# Reset internal variables from *::Core.
+	$self->SUPER::reset;
 
 	# Any processed selector.
 	$self->{'processed'} = 0;
@@ -137,104 +41,112 @@ sub reset {
 #------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
-sub _comment {
+sub _default_parameters {
 #------------------------------------------------------------------------------
-# Process comment.
+# Default parameters.
 
-	my ($self, $data) = @_;
-	shift @{$data};
-	if (scalar @{$self->{'tmp_code'}}) {
-		$self->_flush_tmp;
-	}
-	if ($self->{'processed'}) {
-		$self->{'flush_code'} .= "\n";
-	}
-	if ($self->{'indent_flag'}) {
-		$self->{'flush_code'} .= $self->{'indent_string'};
-	}
-	$self->{'flush_code'} .= $self->{'comment_delimeters'}->[0].
-		$SPACE;
-	foreach my $d (@{$data}) {
-		$self->{'flush_code'} .= ref $d eq 'SCALAR' ? ${$d}
-			: $d;
-	}
-	$self->{'flush_code'} .= $SPACE.
-		$self->{'comment_delimeters'}->[1]."\n";;
-	$self->{'processed'} = 0;
+	my $self = SUPER::_default_parameters();
+
+	# Indent string.
+	$self->{'indent_string'} = "\t";
+
+	return $self;
+}
+
+#------------------------------------------------------------------------------
+sub _put_at_rules {
+#------------------------------------------------------------------------------
+# At-rules.
+
+	my ($self, $at_rule, $file) = @_;
+	$self->{'flush_code'} .= $at_rule;
+	$self->{'flush_code'} .= ' "'.$file.'";';
+	$self->{'processed'} = 1;
 	return;
 }
 
 #------------------------------------------------------------------------------
-sub _detect_data {
+sub _put_comment {
 #------------------------------------------------------------------------------
-# Detect and process data.
+# Comment.
 
-	my ($self, $data) = @_;
-
-	# At-rule.
-	if ($data->[0] eq 'a') {
-		$self->{'flush_code'} .= $data->[1];
-		$self->{'flush_code'} .= ' "'.$data->[2].'";';
-		$self->{'processed'} = 1;
-
-	# Comment.
-	} elsif ($data->[0] eq 'c') {
-		$self->_comment($data);
-
-	# Definitions.
-	} elsif ($data->[0] eq 'd') {
-		if (scalar @{$self->{'tmp_code'}}) {
-			$self->_flush_tmp;
+	my ($self, @comments) = @_;
+	$self->_flush_tmp;
+	if (! $self->{'skip_comments'}) {
+		push @comments, $SPACE.$self->{'comment_delimeters'}->[1];
+		unshift @comments, $self->{'comment_delimeters'}->[0].$SPACE;
+		if ($self->{'processed'}) {
+			$self->{'flush_code'} .= "\n";
 		}
-		if (! $self->{'open_selector'}) {
-			err 'No selector.';
+		if ($self->{'indent_flag'}) {
+			$self->{'flush_code'} .= $self->{'indent_string'};
 		}
-		shift @{$data};
-		while (@{$data}) {
-			my $par = shift @{$data};
-			my $val = shift @{$data};
-			$self->{'flush_code'} .= $self->{'indent_string'}.
-				$par.': '.$val.";\n";
-		}
-		$self->{'processed'} = 1;
-
-	# End of selector.
-	} elsif ($data->[0] eq 'e') {
-		if (! $self->{'open_selector'}) {
-			err 'Bad ending of selector.';
-		}
-		if (scalar @{$self->{'tmp_code'}}) {
-			$self->_flush_tmp;
-		}
-		$self->{'flush_code'} .= "}\n";
-		$self->{'open_selector'} = 0;
-		$self->{'processed'} = 1;
-		$self->{'indent_flag'} = 0;
-
-	# Instruction.
-	} elsif ($data->[0] eq 'i') {
-		$self->_comment($data);
-
-	# Raw data.
-	} elsif ($data->[0] eq 'r') {
-		shift @{$data};
-		while (@{$data}) {
-			my $data = shift @{$data};
-			$self->{'flush_code'} .= $data;
-		}
-
-	# Begin of selector.
-	} elsif ($data->[0] eq 's') {
-		push @{$self->{'tmp_code'}}, "$data->[1]";
-		$self->{'open_selector'} = 1;
-		$self->{'indent_flag'} = 1;
-
-	# Other.
-	} else {
-		if ($self->{'skip_bad_types'}) {
-			err 'Bad type of data.';
-		}
+		$self->{'flush_code'} .= join $EMPTY_STR, @comments;
+		$self->{'processed'} = 0;
 	}
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_definition {
+#------------------------------------------------------------------------------
+# Definition.
+
+	my ($self, $key, $value) = @_;
+	$self->_check_opened_selector;
+	$self->_flush_tmp;
+	$self->{'flush_code'} .= $key.':'.$value.";\n";
+	$self->{'processed'} = 1;
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_end_of_selector {
+#------------------------------------------------------------------------------
+# End of selector.
+
+	my $self = shift;
+	$self->_check_opened_selector;
+	$self->_flush_tmp;
+	$self->{'flush_code'} .= "}\n";
+	$self->{'open_selector'} = 0;
+	$self->{'processed'} = 1;
+	$self->{'indent_flag'} = 0;
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_instruction {
+#------------------------------------------------------------------------------
+# Instruction.
+
+	my ($self, $target, $code) = @_;
+	$self->_put_comment($target, $code);
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_raw {
+#------------------------------------------------------------------------------
+# Raw data.
+
+	my ($self, @raw_data) = @_;
+
+	# To flush code.
+	$self->{'flush_code'} .= join $EMPTY_STR, @raw_data;
+
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _put_selector {
+#------------------------------------------------------------------------------
+# Selectors.
+
+	my ($self, $selector) = @_;
+	push @{$self->{'tmp_code'}}, $selector;
+	$self->{'open_selector'} = 1;
+	$self->{'indent_flag'} = 1;
 	return;
 }
 
@@ -244,11 +156,24 @@ sub _flush_tmp {
 # Flush $self->{'tmp_code'}.
 
 	my $self = shift;
-	if ($self->{'processed'}) {
-		$self->{'flush_code'} .= "\n";
+	if (@{$self->{'tmp_code'}}) {
+		if ($self->{'processed'}) {
+			$self->{'flush_code'} .= "\n";
+		}
+		$self->{'flush_code'} .= (join ', ', @{$self->{'tmp_code'}}).
+			" {\n";
+		$self->{'tmp_code'} = [];
 	}
-	$self->{'flush_code'} .= join(', ', @{$self->{'tmp_code'}})." {\n";
-	$self->{'tmp_code'} = [];
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _reset_flush_code {
+#------------------------------------------------------------------------------
+# Reset flush code.
+
+	my $self = shift;
+	$self->{'flush_code'} = $EMPTY_STR;
 	return;
 }
 
@@ -262,14 +187,12 @@ __END__
 
 =head1 NAME
 
- CSS::Structure::Output::Indent - Indent printing 'CSS::Structure' structure to css code.
+ CSS::Structure::Output::Indent - Indent printing 'CSS::Structure' structure to CSS code.
 
 =head1 SYNOPSIS
 
  use CSS::Structure::Output::Indent;
- my $css = CSS::Structure::Output::Indent->new(
-         'output_handler' => \*STDOUT,
- );
+ my $css = CSS::Structure::Output::Indent->new(%parameters);
  $css->put(
          ['s', 'blam'],
          ['d', 'weight', '100px'],
@@ -323,12 +246,13 @@ TODO
 
 =head1 DEPENDENCIES
 
-L<Readonly(3pm)>,
-L<Error::Simple::Multiple(3pm)>.
+L<Readonly(3pm)>.
 
 =head1 SEE ALSO
 
 L<CSS::Structure(3pm)>,
+L<CSS::Structure::Utils(3pm)>,
+L<CSS::Structure::Output::Core(3pm)>.
 L<CSS::Structure::Output::Raw(3pm)>.
 
 =head1 AUTHOR
