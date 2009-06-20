@@ -31,7 +31,7 @@ sub new {
 	$self->{'skip_bad_tags'} = 0;
 
 	# Skip comments.
-	$self->{'skip_comments'} = 1;
+	$self->{'skip_comments'} = 0;
 
 	# Process params.
 	while (@params) {
@@ -305,20 +305,18 @@ __END__
 
 =head1 NAME
 
- CSS::Structure::Output::Core - TODO
+ CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
 
 =head1 SYNOPSIS
 
  use CSS::Structure::Output::Raw;
- my $css = CSS::Structure::Output::Core->new(
-         # TODO 
- );
+ my $css = CSS::Structure::Output::Core->new(%parameters);
  $css->put(
          ['s', 'foo'],
          ['d', 'weight', '100px'],
          ['e'],
  );
- $css->flush;
+ $css->flush($reset_flag);
  $css->reset;
 
 =head1 METHODS
@@ -333,42 +331,51 @@ __END__
 
 =item * B<comment_delimeters>
 
- TODO
+ Reference to array with begin and end comment delimeter.
+ Default value is ['/*', '*/'].
+ Possible values are:
+ - ['/*', '*/']
+ - ['<!--', '-->'],
 
 =item * B<output_handler>
 
- TODO
+ Handler for print output strings.
+ Must be a GLOB.
  Default value is undef.
 
 =item * B<skip_bad_tags>
 
- TODO
+ Flag, that means bad tags skipping.
+ Default value is 0.
 
 =item * B<skip_comments>
 
- TODO
+ Flag, that means comment skipping.
+ Default value is 0.
 
 =back
 
-=item B<flush()>
+=item B<flush($reset_flag)>
 
- TODO
+ Flush CSS structure in object.
+ If defined 'output_handler' flush to its.
+ Or return code.
+ If enabled $reset_flag, then resets internal variables via reset method.
 
-=item B<put()>
+=item B<put(@data)>
 
- TODO
+ Put CSS structure in format specified in L<CSS::Structure(3pm)>.
 
 =item B<reset()>
 
- TODO
+ Resets internal variables.
 
 =back
 
 =head1 DEPENDENCIES
 
 L<Error::Simple::Multiple(3pm)>,
-L<List::MoreUtils(3pm)>,
-L<Readonly(3pm)>.
+L<List::MoreUtils(3pm)>.
 
 =head1 SEE ALSO
 
