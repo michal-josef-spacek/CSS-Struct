@@ -53,6 +53,7 @@ sub _put_comment {
 # Comment.
 
 	my ($self, @comments) = @_;
+	$self->_flush_tmp;
 	if (! $self->{'skip_comments'}) {
 		push @comments, $self->{'comment_delimeters'}->[1];
 		unshift @comments, $self->{'comment_delimeters'}->[0];
