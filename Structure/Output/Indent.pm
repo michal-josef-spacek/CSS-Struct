@@ -8,6 +8,7 @@ use strict;
 use warnings;
 
 # Modules.
+use Indent;
 use Readonly;
 
 # Constants.
@@ -30,8 +31,10 @@ sub reset {
 	# Any processed selector.
 	$self->{'processed'} = 0;
 
-	# Indent flag.
-	$self->{'indent_flag'} = 0;
+	# Indent object.
+	$self->{'indent'} = Indent->new(
+		'next_indent' => $self->{'next_indent'},
+	);
 
 	return;
 }
@@ -51,7 +54,7 @@ sub _default_parameters {
 	$self->SUPER::_default_parameters;
 
 	# Indent string.
-	$self->{'indent_string'} = "\t";
+	$self->{'next_indent'} = "\t";
 
 	return;
 }
@@ -62,7 +65,7 @@ sub _put_at_rules {
 # At-rules.
 
 	my ($self, $at_rule, $file) = @_;
-	$self->{'flush_code'} .= $at_rule.' "'.$file.'";';
+	$self->{'flush_code'} .= $at_rule.' "'.$file."\";\n";
 	$self->{'processed'} = 1;
 	return;
 }
@@ -80,10 +83,8 @@ sub _put_comment {
 		if ($self->{'processed'}) {
 			$self->{'flush_code'} .= "\n";
 		}
-		if ($self->{'indent_flag'}) {
-			$self->{'flush_code'} .= $self->{'indent_string'};
-		}
-		$self->{'flush_code'} .= join $EMPTY_STR, @comments;
+		$self->{'flush_code'} .= $self->{'indent'}->get.
+			(join $EMPTY_STR, @comments)."\n";
 		$self->{'processed'} = 0;
 	}
 	return;
@@ -97,7 +98,7 @@ sub _put_definition {
 	my ($self, $key, $value) = @_;
 	$self->_check_opened_selector;
 	$self->_flush_tmp;
-	$self->{'flush_code'} .= $self->{'indent_string'}.$key.':'.$SPACE.
+	$self->{'flush_code'} .= $self->{'indent'}->get.$key.':'.$SPACE.
 		$value.";\n";
 	$self->{'processed'} = 1;
 	return;
@@ -111,10 +112,10 @@ sub _put_end_of_selector {
 	my $self = shift;
 	$self->_check_opened_selector;
 	$self->_flush_tmp;
+	$self->{'indent'}->remove;
 	$self->{'flush_code'} .= "}\n";
 	$self->{'open_selector'} = 0;
 	$self->{'processed'} = 1;
-	$self->{'indent_flag'} = 0;
 	return;
 }
 
@@ -149,7 +150,7 @@ sub _put_selector {
 	my ($self, $selector) = @_;
 	push @{$self->{'tmp_code'}}, $selector;
 	$self->{'open_selector'} = 1;
-	$self->{'indent_flag'} = 1;
+	$self->{'indent'}->add;
 	return;
 }
 
@@ -249,6 +250,7 @@ TODO
 
 =head1 DEPENDENCIES
 
+L<Indent(3pm)>,
 L<Readonly(3pm)>.
 
 =head1 SEE ALSO
