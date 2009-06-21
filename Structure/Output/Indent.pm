@@ -28,6 +28,9 @@ sub reset {
 	# Reset internal variables from *::Core.
 	$self->SUPER::reset;
 
+	# Comment after selector.
+	$self->{'comment_after_selector'} = 0;
+
 	# Indent object.
 	$self->{'indent'} = Indent->new(
 		'next_indent' => $self->{'next_indent'},
@@ -52,9 +55,6 @@ sub _default_parameters {
 
 	# Default parameters from SUPER.
 	$self->SUPER::_default_parameters;
-
-	# Comment after selector.
-	$self->{'comment_after_selector'} = 0;
 
 	# Indent string.
 	$self->{'next_indent'} = "\t";
