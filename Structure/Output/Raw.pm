@@ -43,13 +43,15 @@ sub _flush_tmp {
 
 	my $self = shift;
 	if (@{$self->{'tmp_code'}}) {
-		my $comment = $EMPTY_STR;
+		my @comment;
 		if ($self->{'comment_after_selector'}) {
-			$comment = pop @{$self->{'tmp_code'}};
+			@comment = splice @{$self->{'tmp_code'}},
+				-$self->{'comment_after_selector'};
 		}
 		pop @{$self->{'tmp_code'}};
 		$self->{'flush_code'} .= 
-			(join $EMPTY_STR, @{$self->{'tmp_code'}}).'{'.$comment;
+			(join $EMPTY_STR, @{$self->{'tmp_code'}}).'{'.
+			(join $EMPTY_STR, @comment);
 		$self->{'tmp_code'} = [];
 	}
 	return;
@@ -77,7 +79,7 @@ sub _put_comment {
 		my $comment = join $EMPTY_STR, @comments;
 		if (@{$self->{'tmp_code'}}) {
 			push @{$self->{'tmp_code'}}, $comment;
-			$self->{'comment_after_selector'} = 1;
+			$self->{'comment_after_selector'}++;
 		} else {
 			$self->{'flush_code'} .= $comment;
 		}
@@ -140,8 +142,8 @@ sub _put_selector {
 
 	my ($self, $selector) = @_;
 	push @{$self->{'tmp_code'}}, $selector, ',';
-	$self->{'open_selector'} = 1;
 	$self->{'comment_after_selector'} = 0;
+	$self->{'open_selector'} = 1;
 	return;
 }
 
