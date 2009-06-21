@@ -7,7 +7,6 @@ TODO
 7. Doresit testy podle cover testing.
 8. Resit callbacks?
 9. Dodelat dokumentaci.
-10. Dokumentace k CSS::Structure::Utils.
 13.
 
 Applied
@@ -28,4 +27,7 @@ OK [20090620] skim
 OK [20090621] skim
 
 12. Testy k CSS::Structure::Utils.
+OK [20090621] skim
+
+10. Dokumentace k CSS::Structure::Utils.
 OK [20090621] skim
