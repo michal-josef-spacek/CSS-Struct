@@ -7,7 +7,7 @@ use strict;
 use warnings;
 
 # Modules.
-use CSS::Structure::Utils qw(check_params);
+use CSS::Structure::Utils qw(set_params);
 use Error::Simple::Multiple qw(err);
 use List::MoreUtils qw(none);
 
@@ -28,7 +28,7 @@ sub new {
 	$self->_default_parameters;
 
 	# Process params.
-	check_params($self, @params);
+	set_params($self, @params);
 
 	# Check parameters to right values.
 	$self->_check_params;

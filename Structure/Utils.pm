@@ -12,15 +12,15 @@ use Error::Simple::Multiple qw(err);
 use Readonly;
 
 # Constants.
-Readonly::Array our @EXPORT_OK => qw(check_params);
+Readonly::Array our @EXPORT_OK => qw(set_params);
 
 # Version.
 our $VERSION = 0.01;
 
 #------------------------------------------------------------------------------
-sub check_params {
+sub set_params {
 #------------------------------------------------------------------------------
-# Check parameters.
+# Set parameters to user values.
 
 	my ($self, @params) = @_;
 	while (@params) {
