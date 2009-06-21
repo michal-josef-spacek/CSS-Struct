@@ -1,6 +1,6 @@
 # Modules.
 use CSS::Structure::Output::Core;
-use Test::More 'tests' => 1;
+use Test::More 'tests' => 2;
 
 print "Testing: put() method.\n";
 my $obj = CSS::Structure::Output::Core->new;
@@ -25,3 +25,12 @@ Selector
 END
 chomp $right_ret;
 is($ret, $right_ret);
+
+$obj = CSS::Structure::Output::Core->new(
+	'skip_bad_types' => 1,
+);
+$obj->put(
+	['x', 'bad selector'],
+);
+$ret = $obj->flush;
+is($ret, '');
