@@ -173,7 +173,7 @@ __END__
 
  use CSS::Structure::Output::Raw;
  my $css = CSS::Structure::Output::Raw->new(%parameters);
- $css->put(@data_ar);
+ $css->put(@data);
  $css->flush;
  $css->reset;
 

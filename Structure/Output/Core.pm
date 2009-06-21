@@ -335,11 +335,7 @@ __END__
 
  use CSS::Structure::Output::Raw;
  my $css = CSS::Structure::Output::Core->new(%parameters);
- $css->put(
-         ['s', 'foo'],
-         ['d', 'weight', '100px'],
-         ['e'],
- );
+ $css->put(@data);
  $css->flush($reset_flag);
  $css->reset;
 

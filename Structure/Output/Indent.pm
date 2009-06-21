@@ -225,7 +225,7 @@ __END__
 
  use CSS::Structure::Output::Indent;
  my $css = CSS::Structure::Output::Indent->new(%parameters);
- $css->put(@data_ar);
+ $css->put(@data);
  $css->flush;
  $css->reset;
 
