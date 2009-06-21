@@ -1,6 +1,6 @@
 # Modules.
-use English qw(-no_match_vars);
 use CSS::Structure::Output::Core;
+use English qw(-no_match_vars);
 use Test::More 'tests' => 4;
 
 print "Testing: new('') bad constructor.\n";
