@@ -15,6 +15,7 @@ t/CSS::Structure::Output::Core/02_pod_coverage.t
 t/CSS::Structure::Output::Core/03_pod.t
 t/CSS::Structure::Output::Core/04_constructor.t
 t/CSS::Structure::Output::Core/05_put.t
+t/CSS::Structure::Output::Core/06_output_handler.t
 t/CSS::Structure::Output::Indent/00_use.t
 t/CSS::Structure::Output::Indent/01_version.t
 t/CSS::Structure::Output::Indent/02_pod_coverage.t
@@ -27,6 +28,7 @@ t/CSS::Structure::Output::Indent/08_at_rules.t
 t/CSS::Structure::Output::Indent/09_comment.t
 t/CSS::Structure::Output::Indent/10_raw.t
 t/CSS::Structure::Output::Indent/11_instruction.t
+t/CSS::Structure::Output::Indent/12_output_handler.t
 t/CSS::Structure::Output::Raw/00_use.t
 t/CSS::Structure::Output::Raw/01_version.t
 t/CSS::Structure::Output::Raw/02_pod_coverage.t
@@ -39,8 +41,10 @@ t/CSS::Structure::Output::Raw/08_at_rules.t
 t/CSS::Structure::Output::Raw/09_comment.t
 t/CSS::Structure::Output::Raw/10_raw.t
 t/CSS::Structure::Output::Raw/11_instruction.t
+t/CSS::Structure::Output::Raw/12_output_handler.t
 t/CSS::Structure::Utils/00_use.t
 t/CSS::Structure::Utils/01_version.t
 t/CSS::Structure::Utils/02_pod_coverage.t
 t/CSS::Structure::Utils/03_pod.t
 t/CSS::Structure::Utils/04_set_params.t
+t/get_stdout.inc
