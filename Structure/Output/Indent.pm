@@ -53,9 +53,43 @@ sub _default_parameters {
 	# Default parameters from SUPER.
 	$self->SUPER::_default_parameters;
 
+	# Comment after selector.
+	$self->{'comment_after_selector'} = 0;
+
 	# Indent string.
 	$self->{'next_indent'} = "\t";
 
+	return;
+}
+
+#------------------------------------------------------------------------------
+sub _flush_tmp {
+#------------------------------------------------------------------------------
+# Flush $self->{'tmp_code'}.
+
+	my $self = shift;
+	if (@{$self->{'tmp_code'}}) {
+		$self->{'indent'}->add;
+		my @comment;
+		if ($self->{'comment_after_selector'}) {
+			@comment = splice @{$self->{'tmp_code'}},
+				-$self->{'comment_after_selector'};
+			pop @comment;
+			foreach my $com (@comment) {
+				if ($com ne $EMPTY_STR && $com ne "\n") {
+					$com = $self->{'indent'}->get.$com;
+				}
+			}
+		} else {
+			pop @{$self->{'tmp_code'}};
+		}
+		pop @{$self->{'tmp_code'}};
+		push @{$self->{'flush_code'}}, 
+			(join $EMPTY_STR, @{$self->{'tmp_code'}}).' {'.
+			(join $EMPTY_STR, @comment);
+		$self->{'tmp_code'} = [];
+		$self->{'processed'} = 1;
+	}
 	return;
 }
 
@@ -76,15 +110,26 @@ sub _put_comment {
 # Comment.
 
 	my ($self, @comments) = @_;
-	$self->_flush_tmp;
 	if (! $self->{'skip_comments'}) {
 		push @comments, $SPACE.$self->{'comment_delimeters'}->[1];
 		unshift @comments, $self->{'comment_delimeters'}->[0].$SPACE;
 		if ($self->{'processed'}) {
 			push @{$self->{'flush_code'}}, $EMPTY_STR;
 		}
-		push @{$self->{'flush_code'}}, $self->{'indent'}->get.
-			(join $EMPTY_STR, @comments);
+		my $comment = (join $EMPTY_STR, @comments);
+		if (@{$self->{'tmp_code'}}) {
+			my $sep = $EMPTY_STR;
+			if ($self->{'comment_after_selector'} == 0) {
+				$sep = $self->{'output_sep'};
+				pop @{$self->{'tmp_code'}};
+			}
+			push @{$self->{'tmp_code'}}, ($sep) x 2, $comment, 
+				$self->{'output_sep'};
+			$self->{'comment_after_selector'} += 4;
+		} else {
+			push @{$self->{'flush_code'}}, 
+				$self->{'indent'}->get.$comment;
+		}
 		$self->{'processed'} = 0;
 	}
 	return;
@@ -148,24 +193,9 @@ sub _put_selector {
 # Selectors.
 
 	my ($self, $selector) = @_;
-	push @{$self->{'tmp_code'}}, $selector;
+	push @{$self->{'tmp_code'}}, $selector, ',', ' ';
+	$self->{'comment_after_selector'} = 0;
 	$self->{'open_selector'} = 1;
-	return;
-}
-
-#------------------------------------------------------------------------------
-sub _flush_tmp {
-#------------------------------------------------------------------------------
-# Flush $self->{'tmp_code'}.
-
-	my $self = shift;
-	if (@{$self->{'tmp_code'}}) {
-		push @{$self->{'flush_code'}}, 
-			(join ', ', @{$self->{'tmp_code'}}).' {';
-		$self->{'tmp_code'} = [];
-		$self->{'processed'} = 1;
-		$self->{'indent'}->add;
-	}
 	return;
 }
 
