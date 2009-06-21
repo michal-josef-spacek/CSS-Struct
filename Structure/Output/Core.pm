@@ -402,15 +402,18 @@ __END__
 
 =head1 ERRORS
 
- Bad comment delimeters.
- Bad data.
- Bad number of arguments. 
-   ('CSS::Structure' structure array),
- Bad type of data.
- Cannot write to output handler.
- No opened selector.
- Output handler is bad file handler.
- Unknown parameter '%s'.
+ From CSS::Structure::Utils:
+   Unknown parameter '%s'.
+
+ From mine:
+   Bad comment delimeters.
+   Bad data.
+   Bad number of arguments. 
+     ('CSS::Structure' structure array),
+   Bad type of data.
+   Cannot write to output handler.
+   No opened selector.
+   Output handler is bad file handler.
 
 =head1 DEPENDENCIES
 
