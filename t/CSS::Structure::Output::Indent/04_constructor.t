@@ -1,7 +1,7 @@
 # Modules.
 use CSS::Structure::Output::Indent;
 use English qw(-no_match_vars);
-use Test::More 'tests' => 4;
+use Test::More 'tests' => 6;
 
 print "Testing: new() plain constructor.\n";
 my $obj = CSS::Structure::Output::Indent->new;
@@ -21,3 +21,19 @@ eval {
 	);
 };
 is($EVAL_ERROR, 'Output handler is bad file handler.'."\n");
+
+print "Testing: new('comment_delimeters' => 'x']) bad constructor.\n";
+eval {
+	$obj = CSS::Structure::Output::Indent->new(
+		'comment_delimeters' => 'x',
+	);
+};
+is($EVAL_ERROR, "Bad comment delimeters.\n");
+
+print "Testing: new('comment_delimeters' => ['x', 'x']) bad constructor.\n";
+eval {
+	$obj = CSS::Structure::Output::Indent->new(
+		'comment_delimeters' => ['x', 'x'],
+	);
+};
+is($EVAL_ERROR, "Bad comment delimeters.\n");
