@@ -8,7 +8,6 @@ TODO
 8. Resit callbacks?
 9. Dodelat dokumentaci.
 10. Dokumentace k CSS::Structure::Utils.
-11. Doresit chyby v CSS::Structure::Output::Indent s komentari mezi selectory.
 12. Testy k CSS::Structure::Utils.
 13.
 
@@ -25,3 +24,6 @@ OK [20090620] skim
 
 5. Predelat system stejne jako Tags2 na CSS::Structure::Output::Core.
 OK [20090620] skim
+
+11. Doresit chyby v CSS::Structure::Output::Indent s komentari mezi selectory.
+OK [20090621] skim
