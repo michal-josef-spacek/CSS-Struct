@@ -49,7 +49,7 @@ sub _flush_tmp {
 				-$self->{'comment_after_selector'};
 		}
 		pop @{$self->{'tmp_code'}};
-		$self->{'flush_code'} .= 
+		$self->{'flush_code'} .=
 			(join $EMPTY_STR, @{$self->{'tmp_code'}}).'{'.
 			(join $EMPTY_STR, @comment);
 		$self->{'tmp_code'} = [];
@@ -235,7 +235,7 @@ __END__
  From CSS::Structure::Core:
    Bad comment delimeters.
    Bad data.
-   Bad number of arguments. 
+   Bad number of arguments.
      ('CSS::Structure' structure array),
    Bad type of data.
    Cannot write to output handler.

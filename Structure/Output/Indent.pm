@@ -84,7 +84,7 @@ sub _flush_tmp {
 			pop @{$self->{'tmp_code'}};
 		}
 		pop @{$self->{'tmp_code'}};
-		push @{$self->{'flush_code'}}, 
+		push @{$self->{'flush_code'}},
 			(join $EMPTY_STR, @{$self->{'tmp_code'}}).' {'.
 			(join $EMPTY_STR, @comment);
 		$self->{'tmp_code'} = [];
@@ -123,11 +123,11 @@ sub _put_comment {
 				$sep = $self->{'output_sep'};
 				pop @{$self->{'tmp_code'}};
 			}
-			push @{$self->{'tmp_code'}}, ($sep) x 2, $comment, 
+			push @{$self->{'tmp_code'}}, ($sep) x 2, $comment,
 				$self->{'output_sep'};
 			$self->{'comment_after_selector'} += 4;
 		} else {
-			push @{$self->{'flush_code'}}, 
+			push @{$self->{'flush_code'}},
 				$self->{'indent'}->get.$comment;
 		}
 		$self->{'processed'} = 0;
@@ -292,7 +292,7 @@ __END__
  From CSS::Structure::Core:
    Bad comment delimeters.
    Bad data.
-   Bad number of arguments. 
+   Bad number of arguments.
      ('CSS::Structure' structure array),
    Bad type of data.
    Cannot write to output handler.

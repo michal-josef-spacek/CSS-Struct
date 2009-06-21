@@ -54,6 +54,7 @@ sub flush {
 		$ret = $self->{'flush_code'};
 	}
 	if ($ouf) {
+		no warnings;
 		print {$ouf} $ret or err 'Cannot write to output handler.';
 		undef $ret;
 	}
@@ -168,8 +169,8 @@ sub _check_arguments {
 	my ($self, $css_structure_ar, $min_arg_num, $max_arg_num) = @_;
 	my $arg_num = scalar @{$css_structure_ar};
 	if ($arg_num < $min_arg_num || $arg_num > $max_arg_num) {
-		err 'Bad number of arguments.', 
-			'\'CSS::Structure\' structure', 
+		err 'Bad number of arguments.',
+			'\'CSS::Structure\' structure',
 			join ', ', @{$css_structure_ar};
 	}
 	return;
@@ -220,7 +221,7 @@ sub _check_params {
 	my $self = shift;
 
 	# Check to output handler.
-	if (defined $self->{'output_handler'} 
+	if (defined $self->{'output_handler'}
 		&& ref $self->{'output_handler'} ne 'GLOB') {
 
 		err 'Output handler is bad file handler.';
@@ -231,7 +232,7 @@ sub _check_params {
 		('/*', '<!--'))
 		|| (none { $_ eq $self->{'comment_delimeters'}->[1] }
 		('*/', '-->'))) {
-		
+
 		err 'Bad comment delimeters.';
 	}
 
@@ -408,7 +409,7 @@ __END__
  From mine:
    Bad comment delimeters.
    Bad data.
-   Bad number of arguments. 
+   Bad number of arguments.
      ('CSS::Structure' structure array),
    Bad type of data.
    Cannot write to output handler.
