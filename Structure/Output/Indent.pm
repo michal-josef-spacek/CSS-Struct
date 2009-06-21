@@ -28,13 +28,13 @@ sub reset {
 	# Reset internal variables from *::Core.
 	$self->SUPER::reset;
 
-	# Any processed selector.
-	$self->{'processed'} = 0;
-
 	# Indent object.
 	$self->{'indent'} = Indent->new(
 		'next_indent' => $self->{'next_indent'},
 	);
+
+	# Any processed selector.
+	$self->{'processed'} = 0;
 
 	return;
 }
