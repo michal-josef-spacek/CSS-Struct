@@ -1,7 +1,7 @@
 # Modules.
 use CSS::Structure::Output::Raw;
 use English qw(-no_match_vars);
-use Test::More 'tests' => 7;
+use Test::More 'tests' => 8;
 
 print "Testing: new() plain constructor.\n";
 my $obj = CSS::Structure::Output::Raw->new;
@@ -45,3 +45,11 @@ eval {
 	);
 };
 is($EVAL_ERROR, "Bad comment delimeters.\n");
+
+print "Testing: new('auto_flush' => 1) bad constructor.\n";
+eval {
+	$obj = CSS::Structure::Output::Raw->new(
+		'auto_flush' => 1,
+	);
+};
+is($EVAL_ERROR, 'Auto-flush can\'t use without output handler.'."\n");
