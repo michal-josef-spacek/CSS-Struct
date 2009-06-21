@@ -4,6 +4,9 @@ TODO
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 2. Indentovani pro selectory, pokud jsou hodne dlouhe.
    Plati pro CSS::Structure::Output::Indent
+   Je tam pole ('selector2', ';', ' ', 'selector2', ';', ' ').
+   Muze mezi tim byl komentar. Muselo by se indentovat jenom to, co se vykresli
+   skutecne na jeden radek.
 7. Doresit testy podle cover testing.
 8. Resit callbacks?
 13.
