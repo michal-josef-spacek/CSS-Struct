@@ -6,7 +6,6 @@ TODO
    Plati pro CSS::Structure::Output::Indent
 7. Doresit testy podle cover testing.
 8. Resit callbacks?
-9. Dodelat dokumentaci.
 13.
 
 Applied
@@ -30,4 +29,7 @@ OK [20090621] skim
 OK [20090621] skim
 
 10. Dokumentace k CSS::Structure::Utils.
+OK [20090621] skim
+
+9. Dodelat dokumentaci.
 OK [20090621] skim
