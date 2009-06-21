@@ -1,6 +1,6 @@
 # Modules.
 use CSS::Structure::Output::Raw;
-use Test::More 'tests' => 11;
+use Test::More 'tests' => 13;
 
 print "Testing: Without comment.\n";
 my $obj = CSS::Structure::Output::Raw->new(
@@ -23,15 +23,13 @@ is($ret, 'body{}');
 
 $obj->reset;
 $obj->put(
-	['c', 'comment1'],
 	['s', 'body'],
-	['e'],
+	['c', 'comment1'],
 	['c', 'comment2'],
-	['s', 'div'],
 	['e'],
 );
 $ret = $obj->flush;
-is($ret, 'body{}div{}');
+is($ret, 'body{}');
 
 $obj->reset;
 $obj->put(
@@ -54,6 +52,18 @@ $obj->put(
 );
 $ret = $obj->flush;
 is($ret, 'body,div{}');
+
+$obj->reset;
+$obj->put(
+	['c', 'comment1'],
+	['s', 'body'],
+	['e'],
+	['c', 'comment2'],
+	['s', 'div'],
+	['e'],
+);
+$ret = $obj->flush;
+is($ret, 'body{}div{}');
 
 print "Testing: Comment.\n";
 $obj = CSS::Structure::Output::Raw->new(
@@ -94,6 +104,16 @@ $obj->put(
 );
 $ret = $obj->flush;
 is($ret, 'body{/*comment*/}');
+
+$obj->reset;
+$obj->put(
+	['s', 'body'],
+	['c', 'comment1'],
+	['c', 'comment2'],
+	['e'],
+);
+$ret = $obj->flush;
+is($ret, 'body{/*comment1*//*comment2*/}');
 
 $obj->reset;
 $obj->put(
