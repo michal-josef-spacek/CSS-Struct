@@ -1,7 +1,7 @@
 # Modules.
 use CSS::Structure::Output::Core;
 use English qw(-no_match_vars);
-use Test::More 'tests' => 7;
+use Test::More 'tests' => 8;
 
 print "Testing: new('') bad constructor.\n";
 my $obj;
@@ -30,6 +30,14 @@ print "Testing: new('comment_delimeters' => 'x']) bad constructor.\n";
 eval {
 	$obj = CSS::Structure::Output::Core->new(
 		'comment_delimeters' => 'x',
+	);
+};
+is($EVAL_ERROR, "Bad comment delimeters.\n");
+
+print "Testing: new('comment_delimeters' => [q{/*}, 'x']) bad constructor.\n";
+eval {
+	$obj = CSS::Structure::Output::Core->new(
+		'comment_delimeters' => [q{/*}, 'x'],
 	);
 };
 is($EVAL_ERROR, "Bad comment delimeters.\n");
