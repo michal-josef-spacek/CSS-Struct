@@ -228,7 +228,8 @@ sub _check_params {
 	}
 
 	# Check to comment delimeters.
-	if ((none { $_ eq $self->{'comment_delimeters'}->[0] }
+	if (ref $self->{'comment_delimeters'} ne 'ARRAY'
+		|| (none { $_ eq $self->{'comment_delimeters'}->[0] }
 		(q{/*}, '<!--'))
 		|| (none { $_ eq $self->{'comment_delimeters'}->[1] }
 		(q{*/}, '-->'))) {
