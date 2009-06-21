@@ -7,7 +7,6 @@ TODO
    Je tam pole ('selector2', ';', ' ', 'selector2', ';', ' ').
    Muze mezi tim byl komentar. Muselo by se indentovat jenom to, co se vykresli
    skutecne na jeden radek.
-7. Doresit testy podle cover testing.
 8. Resit callbacks?
 13.
 
@@ -35,4 +34,7 @@ OK [20090621] skim
 OK [20090621] skim
 
 9. Dodelat dokumentaci.
+OK [20090621] skim
+
+7. Doresit testy podle cover testing.
 OK [20090621] skim
