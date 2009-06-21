@@ -8,7 +8,6 @@ TODO
 8. Resit callbacks?
 9. Dodelat dokumentaci.
 10. Dokumentace k CSS::Structure::Utils.
-12. Testy k CSS::Structure::Utils.
 13.
 
 Applied
@@ -26,4 +25,7 @@ OK [20090620] skim
 OK [20090620] skim
 
 11. Doresit chyby v CSS::Structure::Output::Indent s komentari mezi selectory.
+OK [20090621] skim
+
+12. Testy k CSS::Structure::Utils.
 OK [20090621] skim
