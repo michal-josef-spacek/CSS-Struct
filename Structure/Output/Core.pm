@@ -196,7 +196,7 @@ sub _default_parameters {
 	my $self = shift;
 
 	# CSS comment delimeters.
-	$self->{'comment_delimeters'} = ['/*', '*/'];
+	$self->{'comment_delimeters'} = [q{/*}, q{*/}];
 
 	# Set output handler.
 	$self->{'output_handler'} = undef;
@@ -229,9 +229,9 @@ sub _check_params {
 
 	# Check to comment delimeters.
 	if ((none { $_ eq $self->{'comment_delimeters'}->[0] }
-		('/*', '<!--'))
+		(q{/*}, '<!--'))
 		|| (none { $_ eq $self->{'comment_delimeters'}->[1] }
-		('*/', '-->'))) {
+		(q{*/}, '-->'))) {
 
 		err 'Bad comment delimeters.';
 	}
@@ -275,7 +275,7 @@ sub _put_end_of_selector {
 # End of selector.
 
 	my $self = shift;
-	push @{$self->{'flush_code'}}, "End of selector";
+	push @{$self->{'flush_code'}}, 'End of selector';
 	return;
 }
 
