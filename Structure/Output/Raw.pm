@@ -172,14 +172,8 @@ __END__
 =head1 SYNOPSIS
 
  use CSS::Structure::Output::Raw;
- my $css = CSS::Structure::Output::Raw->new(
-         'output_handler' => \*STDOUT,
- );
- $css->put(
-         ['s', 'blam'],
-         ['d', 'weight', '100px'],
-         ['e'],
- );
+ my $css = CSS::Structure::Output::Raw->new(%parameters);
+ $css->put(@data_ar);
  $css->flush;
  $css->reset;
 
@@ -195,36 +189,62 @@ __END__
 
 =item * B<comment_delimeters>
 
- TODO
+ Reference to array with begin and end comment delimeter.
+ Default value is ['/*', '*/'].
+ Possible values are:
+ - ['/*', '*/']
+ - ['<!--', '-->'],
 
 =item * B<output_handler>
 
  Handler for print output strings.
+ Must be a GLOB.
  Default is undef.
 
 =item * B<skip_bad_types>
 
- TODO
+ Flag, that means bad 'CSS::Structure' types skipping.
+ Default value is 0.
+
+=item * B<skip_comments>
+
+ Flag, that means comment skipping.
+ Default value is 0.
 
 =back
 
-=item B<flush()>
+=item B<flush($reset_flag)>
 
- TODO
+ Flush CSS structure in object.
+ If defined 'output_handler' flush to its.
+ Or return code.
+ If enabled $reset_flag, then resets internal variables via reset method.
 
-=item B<put()>
+=item B<put(@data)>
 
- TODO
+ Put CSS structure in format specified in L<CSS::Structure(3pm)>.
 
 =item B<reset()>
 
- TODO
+ Resets internal variables.
 
 =back
 
 =head1 ERRORS
 
-TODO
+ From CSS::Structure::Core:
+   Bad comment delimeters.
+   Bad data.
+   Bad number of arguments. 
+     ('CSS::Structure' structure array),
+   Bad type of data.
+   Cannot write to output handler.
+   No opened selector.
+   Output handler is bad file handler.
+   Unknown parameter '%s'.
+
+ From mine:
+   None
 
 =head1 DEPENDENCIES
 
