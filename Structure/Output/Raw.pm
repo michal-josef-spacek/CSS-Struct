@@ -17,24 +17,24 @@ Readonly::Scalar my $EMPTY_STR => q{};
 our $VERSION = 0.01;
 
 #------------------------------------------------------------------------------
-# Private methods.
+sub reset {
 #------------------------------------------------------------------------------
-
-#------------------------------------------------------------------------------
-sub _default_parameters {
-#------------------------------------------------------------------------------
-# Default parameters.
+# Resets internal variables.
 
 	my $self = shift;
 
-	# Default parameters from SUPER.
-	$self->SUPER::_default_parameters;
+	# Reset internal variables from *::Core.
+	$self->SUPER::reset;
 
 	# Comment after selector.
 	$self->{'comment_after_selector'} = 0;
 
 	return;
 }
+
+#------------------------------------------------------------------------------
+# Private methods.
+#------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------
 sub _flush_tmp {
