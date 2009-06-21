@@ -1,6 +1,7 @@
 # Modules.
 use CSS::Structure::Output::Raw;
-use Test::More 'tests' => 4;
+use English qw(-no_match_vars);
+use Test::More 'tests' => 5;
 
 print "Testing: flush() method.\n";
 my $obj = CSS::Structure::Output::Raw->new;
@@ -36,3 +37,26 @@ $obj->put(
 );
 $ret = $obj->flush;
 is($ret, $right_ret);
+
+SKIP: {
+	eval {
+		require File::Temp;
+	};
+	if ($EVAL_ERROR) {
+		skip 'File::Temp not installed', 1;
+	};
+	my $temp_fh = File::Temp::tempfile();
+	$obj = CSS::Structure::Output::Raw->new(
+		'output_handler' => $temp_fh,
+	);
+	$obj->put(
+		['s', 'selector'],
+		['d', 'attr', 'value'],
+		['e'],
+	);
+	$temp_fh->close;
+	eval {
+		$ret = $obj->flush;
+	};
+	is($EVAL_ERROR, "Cannot write to output handler.\n");
+}
