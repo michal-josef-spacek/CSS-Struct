@@ -52,8 +52,10 @@ __END__
 
 =head1 SEE ALSO
 
+L<CSS::Structure::Output::Core(3pm)>,
 L<CSS::Structure::Output::Raw(3pm)>,
-L<CSS::Structure::Output::Indent(3pm)>.
+L<CSS::Structure::Output::Indent(3pm)>,
+L<CSS::Structure::Utils(3pm)>.
 
 =head1 AUTHOR
 
