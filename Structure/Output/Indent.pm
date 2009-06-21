@@ -239,6 +239,11 @@ __END__
 
 =over 8
 
+=item * B<auto_flush>
+
+ Auto flush flag.
+ Default is 0.
+
 =item * B<comment_delimeters>
 
  Reference to array with begin and end comment delimeter.
@@ -290,6 +295,7 @@ __END__
 =head1 ERRORS
 
  From CSS::Structure::Core:
+   Auto-flush can't use without output handler.
    Bad comment delimeters.
    Bad data.
    Bad number of arguments.
