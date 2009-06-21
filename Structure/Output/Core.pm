@@ -195,6 +195,9 @@ sub _default_parameters {
 
 	my $self = shift;
 
+	# Auto flush flag.
+	$self->{'auto_flush'} = 0;
+
 	# CSS comment delimeters.
 	$self->{'comment_delimeters'} = [q{/*}, q{*/}];
 
@@ -225,6 +228,10 @@ sub _check_params {
 		&& ref $self->{'output_handler'} ne 'GLOB') {
 
 		err 'Output handler is bad file handler.';
+	}
+	# Check auto-flush only with output handler.
+	if ($self->{'auto_flush'} && ! defined $self->{'output_handler'}) {
+		err 'Auto-flush can\'t use without output handler.';
 	}
 
 	# Check to comment delimeters.
@@ -350,6 +357,11 @@ __END__
 
 =over 8
 
+=item * B<auto_flush>
+
+ Auto flush flag.
+ Default is 0.
+
 =item * B<comment_delimeters>
 
  Reference to array with begin and end comment delimeter.
@@ -404,6 +416,7 @@ __END__
    Unknown parameter '%s'.
 
  From mine:
+   Auto-flush can't use without output handler.
    Bad comment delimeters.
    Bad data.
    Bad number of arguments.
