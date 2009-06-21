@@ -12,7 +12,9 @@ is($EVAL_ERROR, "Unknown parameter ''.\n");
 
 print "Testing: new('something' => 'value') bad constructor.\n";
 eval {
-	$obj = CSS::Structure::Output::Core->new('something' => 'value');
+	$obj = CSS::Structure::Output::Core->new(
+		'something' => 'value',
+	);
 };
 is($EVAL_ERROR, "Unknown parameter 'something'.\n");
 
