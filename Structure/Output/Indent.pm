@@ -219,7 +219,7 @@ __END__
 
 =head1 NAME
 
- CSS::Structure::Output::Indent - Indent printing 'CSS::Structure' structure to CSS code.
+CSS::Structure::Output::Indent - Indent printing 'CSS::Structure' structure to CSS code.
 
 =head1 SYNOPSIS
 
@@ -323,14 +323,14 @@ L<CSS::Structure::Output::Raw(3pm)>.
 
 =head1 AUTHOR
 
- Michal Špaček L<tupinek@gmail.com>
+Michal Špaček L<tupinek@gmail.com>
 
 =head1 LICENSE AND COPYRIGHT
 
- BSD license.
+BSD license.
 
 =head1 VERSION
 
- 0.01
+0.01
 
 =cut
