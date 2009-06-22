@@ -294,6 +294,9 @@ CSS::Structure::Output::Indent - Indent printing 'CSS::Structure' structure to C
 
 =head1 ERRORS
 
+ Mine:
+   None
+
  From CSS::Structure::Core:
    Auto-flush can't use without output handler.
    Bad comment delimeters.
@@ -305,9 +308,6 @@ CSS::Structure::Output::Indent - Indent printing 'CSS::Structure' structure to C
    No opened selector.
    Output handler is bad file handler.
    Unknown parameter '%s'.
-
- From mine:
-   None
 
 =head1 DEPENDENCIES
 

@@ -66,7 +66,8 @@ CSS::Structure::Utils - 'CSS::Structure' utilities subroutines.
 
 =head1 ERRORS
 
- Unknown parameter '%s'.
+ set_params():
+   Unknown parameter '%s'.
 
 =head1 DEPENDENCIES
 

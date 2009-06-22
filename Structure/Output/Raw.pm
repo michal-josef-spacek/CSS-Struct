@@ -237,6 +237,9 @@ CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to CSS cod
 
 =head1 ERRORS
 
+ Mine:
+   None
+
  From CSS::Structure::Core:
    Auto-flush can't use without output handler.
    Bad comment delimeters.
@@ -248,9 +251,6 @@ CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to CSS cod
    No opened selector.
    Output handler is bad file handler.
    Unknown parameter '%s'.
-
- From mine:
-   None
 
 =head1 DEPENDENCIES
 
