@@ -123,7 +123,7 @@ sub put {
 		# Other.
 		} else {
 			if (! $self->{'skip_bad_types'}) {
-				err 'Bad type of data.';
+				err 'Bad type of data.', 'type', $type;
 			}
 		}
 	}
