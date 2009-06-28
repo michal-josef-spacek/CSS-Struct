@@ -423,7 +423,7 @@ CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
    No opened selector.
    Output handler is bad file handler.
 
- From CSS::Structure::Utils:
+ From CSS::Structure::Utils::set_params():
    Unknown parameter '%s'.
 
 =head1 DEPENDENCIES
