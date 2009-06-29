@@ -69,6 +69,10 @@ CSS::Structure::Utils - 'CSS::Structure' utilities subroutines.
  set_params():
    Unknown parameter '%s'.
 
+=head1 EXAMPLES
+
+ TODO
+
 =head1 DEPENDENCIES
 
 L<Error::Simple::Multiple(3pm)>,
