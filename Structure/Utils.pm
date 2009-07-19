@@ -69,9 +69,29 @@ CSS::Structure::Utils - 'CSS::Structure' utilities subroutines.
  set_params():
    Unknown parameter '%s'.
 
-=head1 EXAMPLES
+=head1 EXAMPLE
 
- TODO
+ # Pragmas.
+ use strict;
+ use warnings;
+
+ # Modules.
+ use CSS::Structure::Utils qw(set_params);
+
+ # Hash reference with 
+ my $self = {
+        'test' => 'default',
+ };
+
+ # Set params.
+ set_params($self, 'test', 'real_value');
+
+ # In $self->{'test'} will be 'real_value'.
+
+ # Set bad params.
+ set_params($self, 'bad', 'value');
+
+ # Turn error >>Unknown parameter 'bad'.<<.
 
 =head1 DEPENDENCIES
 
