@@ -351,18 +351,18 @@ CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
 
 =over 8
 
-=item B<new(%parameters)>
+=item C<new(%parameters)>
 
  Constructor.
 
 =over 8
 
-=item * B<auto_flush>
+=item * C<auto_flush>
 
  Auto flush flag.
  Default is 0.
 
-=item * B<comment_delimeters>
+=item * C<comment_delimeters>
 
  Reference to array with begin and end comment delimeter.
  Default value is ['/*', '*/'].
@@ -370,41 +370,41 @@ CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
  - ['/*', '*/']
  - ['<!--', '-->'],
 
-=item * B<output_handler>
+=item * C<output_handler>
 
  Handler for print output strings.
  Must be a GLOB.
  Default value is undef.
 
-=item * B<output_sep>
+=item * C<output_sep>
 
  Output separator.
  Default value is newline.
 
-=item * B<skip_bad_types>
+=item * C<skip_bad_types>
 
  Flag, that means bad 'CSS::Structure' types skipping.
  Default value is 0.
 
-=item * B<skip_comments>
+=item * C<skip_comments>
 
  Flag, that means comment skipping.
  Default value is 0.
 
 =back
 
-=item B<flush($reset_flag)>
+=item C<flush($reset_flag)>
 
  Flush CSS structure in object.
  If defined 'output_handler' flush to its.
  Or return code.
  If enabled $reset_flag, then resets internal variables via reset method.
 
-=item B<put(@data)>
+=item C<put(@data)>
 
  Put CSS structure in format specified in L<CSS::Structure(3pm)>.
 
-=item B<reset()>
+=item C<reset()>
 
  Resets internal variables.
 

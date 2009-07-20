@@ -55,7 +55,7 @@ CSS::Structure::Utils - 'CSS::Structure' utilities subroutines.
 
 =over 8
 
-=item B<set_params($self, @params)>
+=item C<set_params($self, @params)>
 
  Sets object parameters to user values.
  If setted key doesn't exist in $self object, turn fatal error.
