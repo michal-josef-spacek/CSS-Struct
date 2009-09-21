@@ -78,7 +78,7 @@ CSS::Structure::Utils - 'CSS::Structure' utilities subroutines.
  # Modules.
  use CSS::Structure::Utils qw(set_params);
 
- # Hash reference with 
+ # Hash reference with default parameters.
  my $self = {
         'test' => 'default',
  };
