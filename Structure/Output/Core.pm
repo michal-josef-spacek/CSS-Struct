@@ -1,6 +1,4 @@
-#------------------------------------------------------------------------------
 package CSS::Structure::Output::Core;
-#------------------------------------------------------------------------------
 
 # Pragmas.
 use strict;
@@ -14,11 +12,8 @@ use List::MoreUtils qw(none);
 # Version.
 our $VERSION = 0.01;
 
-#------------------------------------------------------------------------------
-sub new {
-#------------------------------------------------------------------------------
 # Constructor.
-
+sub new {
 	my ($class, @params) = @_;
 
 	# Create object.
@@ -40,11 +35,8 @@ sub new {
 	return $self;
 }
 
-#------------------------------------------------------------------------------
-sub flush {
-#------------------------------------------------------------------------------
 # Flush CSS structure in object.
-
+sub flush {
 	my ($self, $reset_flag) = @_;
 	my $ouf = $self->{'output_handler'};
 	my $ret;
@@ -68,12 +60,8 @@ sub flush {
 	return $ret;
 }
 
-
-#------------------------------------------------------------------------------
-sub put {
-#------------------------------------------------------------------------------
 # Put CSS structure code.
-
+sub put {
 	my ($self, @data) = @_;
 
 	# For every data.
@@ -138,11 +126,8 @@ sub put {
 }
 
 
-#------------------------------------------------------------------------------
-sub reset {
-#------------------------------------------------------------------------------
 # Resets internal variables.
-
+sub reset {
 	my $self = shift;
 
 	# Tmp code.
@@ -157,15 +142,8 @@ sub reset {
 	return;
 }
 
-#------------------------------------------------------------------------------
-# Private methods.
-#------------------------------------------------------------------------------
-
-#------------------------------------------------------------------------------
-sub _check_arguments {
-#------------------------------------------------------------------------------
 # Check arguments.
-
+sub _check_arguments {
 	my ($self, $css_structure_ar, $min_arg_num, $max_arg_num) = @_;
 	my $arg_num = scalar @{$css_structure_ar};
 	if ($arg_num < $min_arg_num || $arg_num > $max_arg_num) {
@@ -176,11 +154,8 @@ sub _check_arguments {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _check_opened_selector {
-#------------------------------------------------------------------------------
 # Check to opened selector.
-
+sub _check_opened_selector {
 	my $self = shift;
 	if (! $self->{'open_selector'}) {
 		err 'No opened selector.';
@@ -188,11 +163,8 @@ sub _check_opened_selector {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _default_parameters {
-#------------------------------------------------------------------------------
 # Default parameters.
-
+sub _default_parameters {
 	my $self = shift;
 
 	# Auto flush flag.
@@ -216,11 +188,8 @@ sub _default_parameters {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _check_params {
-#------------------------------------------------------------------------------
 # Check parameters to rigth values.
-
+sub _check_params {
 	my $self = shift;
 
 	# Check to output handler.
@@ -247,81 +216,57 @@ sub _check_params {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_at_rules {
-#------------------------------------------------------------------------------
 # At-rules.
-
+sub _put_at_rules {
 	my ($self, $at_rule, $file) = @_;
 	push @{$self->{'flush_code'}}, 'At-rule';
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_comment {
-#------------------------------------------------------------------------------
 # Comment.
-
+sub _put_comment {
 	my ($self, @comments) = @_;
 	push @{$self->{'flush_code'}}, 'Comment';
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_definition {
-#------------------------------------------------------------------------------
 # Definition.
-
+sub _put_definition {
 	my ($self, $key, $value) = @_;
 	push @{$self->{'flush_code'}}, 'Definition';
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_end_of_selector {
-#------------------------------------------------------------------------------
 # End of selector.
-
+sub _put_end_of_selector {
 	my $self = shift;
 	push @{$self->{'flush_code'}}, 'End of selector';
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_instruction {
-#------------------------------------------------------------------------------
 # Instruction.
-
+sub _put_instruction {
 	my ($self, $target, $code) = @_;
 	push @{$self->{'flush_code'}}, 'Instruction';
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_raw {
-#------------------------------------------------------------------------------
 # Raw data.
-
+sub _put_raw {
 	my ($self, @raw_data) = @_;
 	push @{$self->{'flush_code'}}, 'Raw data';
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_selector {
-#------------------------------------------------------------------------------
 # Selectors.
-
+sub _put_selector {
 	my ($self, $selector) = @_;
 	push @{$self->{'flush_code'}}, 'Selector';
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _reset_flush_code {
-#------------------------------------------------------------------------------
 # Reset flush code.
-
+sub _reset_flush_code {
 	my $self = shift;
 	$self->{'flush_code'} = [];
 	return;

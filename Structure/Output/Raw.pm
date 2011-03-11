@@ -1,6 +1,4 @@
-#------------------------------------------------------------------------------
 package CSS::Structure::Output::Raw;
-#------------------------------------------------------------------------------
 
 # Pragmas.
 use base qw(CSS::Structure::Output::Core);
@@ -16,11 +14,8 @@ Readonly::Scalar my $EMPTY_STR => q{};
 # Version.
 our $VERSION = 0.01;
 
-#------------------------------------------------------------------------------
-sub reset {
-#------------------------------------------------------------------------------
 # Resets internal variables.
-
+sub reset {
 	my $self = shift;
 
 	# Reset internal variables from *::Core.
@@ -32,15 +27,8 @@ sub reset {
 	return;
 }
 
-#------------------------------------------------------------------------------
-# Private methods.
-#------------------------------------------------------------------------------
-
-#------------------------------------------------------------------------------
-sub _flush_tmp {
-#------------------------------------------------------------------------------
 # Flush $self->{'tmp_code'}.
-
+sub _flush_tmp {
 	my $self = shift;
 	if (@{$self->{'tmp_code'}}) {
 		my @comment;
@@ -57,21 +45,15 @@ sub _flush_tmp {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_at_rules {
-#------------------------------------------------------------------------------
 # At-rules.
-
+sub _put_at_rules {
 	my ($self, $at_rule, $file) = @_;
 	$self->{'flush_code'} .= $at_rule.' "'.$file.'";';
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_comment {
-#------------------------------------------------------------------------------
 # Comment.
-
+sub _put_comment {
 	my ($self, @comments) = @_;
 	if (! $self->{'skip_comments'}) {
 		push @comments, $self->{'comment_delimeters'}->[1];
@@ -87,11 +69,8 @@ sub _put_comment {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_definition {
-#------------------------------------------------------------------------------
 # Definition.
-
+sub _put_definition {
 	my ($self, $key, $value) = @_;
 	$self->_check_opened_selector;
 	$self->_flush_tmp;
@@ -99,11 +78,8 @@ sub _put_definition {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_end_of_selector {
-#------------------------------------------------------------------------------
 # End of selector.
-
+sub _put_end_of_selector {
 	my $self = shift;
 	$self->_check_opened_selector;
 	$self->_flush_tmp;
@@ -112,21 +88,15 @@ sub _put_end_of_selector {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_instruction {
-#------------------------------------------------------------------------------
 # Instruction.
-
+sub _put_instruction {
 	my ($self, $target, $code) = @_;
 	$self->_put_comment($target, $code);
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_raw {
-#------------------------------------------------------------------------------
 # Raw data.
-
+sub _put_raw {
 	my ($self, @raw_data) = @_;
 
 	# To flush code.
@@ -135,11 +105,8 @@ sub _put_raw {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _put_selector {
-#------------------------------------------------------------------------------
 # Selectors.
-
+sub _put_selector {
 	my ($self, $selector) = @_;
 	push @{$self->{'tmp_code'}}, $selector, ',';
 	$self->{'comment_after_selector'} = 0;
@@ -147,11 +114,8 @@ sub _put_selector {
 	return;
 }
 
-#------------------------------------------------------------------------------
-sub _reset_flush_code {
-#------------------------------------------------------------------------------
 # Reset flush code.
-
+sub _reset_flush_code {
 	my $self = shift;
 	$self->{'flush_code'} = $EMPTY_STR;
 	return;
