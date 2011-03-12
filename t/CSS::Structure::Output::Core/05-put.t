@@ -2,7 +2,10 @@
 use CSS::Structure::Output::Core;
 use Test::More 'tests' => 2;
 
+# Debug message.
 print "Testing: put() method.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Core->new;
 $obj->put(
 	['a', 'at-rule'],
@@ -26,6 +29,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj = CSS::Structure::Output::Core->new(
 	'skip_bad_types' => 1,
 );

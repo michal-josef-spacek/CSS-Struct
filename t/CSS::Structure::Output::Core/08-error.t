@@ -3,13 +3,17 @@ use CSS::Structure::Output::Core;
 use English qw(-no_match_vars);
 use Test::More 'tests' => 4;
 
+# Debug message.
 print "Testing: Errors testing.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Core->new;
 eval {
 	$obj->put('String');
 };
 is($EVAL_ERROR, "Bad data.\n");
 
+# Test.
 eval {
 	$obj->put(
 		['s'],
@@ -17,6 +21,7 @@ eval {
 };
 is($EVAL_ERROR, "Bad number of arguments.\n");
 
+# Test.
 $obj->reset;
 eval {
 	$obj->put(
@@ -25,6 +30,7 @@ eval {
 };
 is($EVAL_ERROR, "Bad number of arguments.\n");
 
+# Test.
 $obj = CSS::Structure::Output::Core->new(
 	'skip_bad_types' => 0,
 );
