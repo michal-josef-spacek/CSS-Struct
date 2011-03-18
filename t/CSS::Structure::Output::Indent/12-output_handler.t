@@ -6,7 +6,10 @@ use Test::More 'tests' => 2;
 # Include helpers.
 do File::Object->new->up->file('get_stdout.inc')->serialize;
 
+# Debug message.
 print "Testing: Output handler.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Indent->new(
 	'output_handler' => \*STDOUT,
 );
@@ -24,6 +27,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj = CSS::Structure::Output::Indent->new(
 	'auto_flush' => 1,
 	'output_handler' => \*STDOUT,

@@ -2,7 +2,10 @@
 use CSS::Structure::Output::Indent;
 use Test::More 'tests' => 16;
 
+# Debug message.
 print "Testing: Without comment.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Indent->new(
 	'skip_comments' => 1,
 );
@@ -12,6 +15,7 @@ $obj->put(
 my $ret = $obj->flush;
 is($ret, '');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment'],
@@ -26,6 +30,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment1'],
@@ -45,6 +50,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -59,6 +65,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -74,6 +81,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -92,6 +100,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -111,6 +120,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment1'],
@@ -127,7 +137,10 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Debug message.
 print "Testing: Comment.\n";
+
+# Test.
 $obj = CSS::Structure::Output::Indent->new(
 	'skip_comments' => 0,
 );
@@ -137,6 +150,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, "/* comment */");
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment'],
@@ -152,6 +166,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment1'],
@@ -174,6 +189,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -190,6 +206,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -208,6 +225,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -228,6 +246,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -250,6 +269,7 @@ END
 chomp $right_ret;
 is($ret, $right_ret);
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment1'],
