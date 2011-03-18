@@ -8,13 +8,13 @@ print "Testing: Constructor.\n";
 
 # Test.
 eval {
-	$obj = CSS::Structure::Output::Core->new('');
+	CSS::Structure::Output::Core->new('');
 };
 is($EVAL_ERROR, "Unknown parameter ''.\n");
 
 # Test.
 eval {
-	$obj = CSS::Structure::Output::Core->new(
+	CSS::Structure::Output::Core->new(
 		'something' => 'value',
 	);
 };
@@ -22,7 +22,7 @@ is($EVAL_ERROR, "Unknown parameter 'something'.\n");
 
 # Test.
 eval {
-	$obj = CSS::Structure::Output::Core->new(
+	CSS::Structure::Output::Core->new(
 		'output_handler' => '',
 	);
 };
@@ -30,7 +30,7 @@ is($EVAL_ERROR, 'Output handler is bad file handler.'."\n");
 
 # Test.
 eval {
-	$obj = CSS::Structure::Output::Core->new(
+	CSS::Structure::Output::Core->new(
 		'comment_delimeters' => 'x',
 	);
 };
@@ -38,7 +38,7 @@ is($EVAL_ERROR, "Bad comment delimeters.\n");
 
 # Test.
 eval {
-	$obj = CSS::Structure::Output::Core->new(
+	CSS::Structure::Output::Core->new(
 		'comment_delimeters' => [q{/*}, 'x'],
 	);
 };
@@ -46,7 +46,7 @@ is($EVAL_ERROR, "Bad comment delimeters.\n");
 
 # Test.
 eval {
-	$obj = CSS::Structure::Output::Core->new(
+	CSS::Structure::Output::Core->new(
 		'comment_delimeters' => ['x', 'x'],
 	);
 };
@@ -54,7 +54,7 @@ is($EVAL_ERROR, "Bad comment delimeters.\n");
 
 # Test.
 eval {
-	$obj = CSS::Structure::Output::Core->new(
+	CSS::Structure::Output::Core->new(
 		'auto_flush' => 1,
 	);
 };
