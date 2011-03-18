@@ -3,7 +3,10 @@ use CSS::Structure::Output::Raw;
 use English qw(-no_match_vars);
 use Test::More 'tests' => 2;
 
+# Debug message.
 print "Testing: End of selector.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Raw->new;
 eval {
 	$obj->put(
@@ -12,6 +15,7 @@ eval {
 };
 is($EVAL_ERROR, "No opened selector.\n");
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],

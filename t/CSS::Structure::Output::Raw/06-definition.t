@@ -2,7 +2,10 @@
 use CSS::Structure::Output::Raw;
 use Test::More 'tests' => 3;
 
+# Debug message.
 print "Testing: Definition.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Raw->new;
 $obj->put(
 	['s', 'body'],
@@ -12,6 +15,7 @@ $obj->put(
 my $ret = $obj->flush;
 is($ret, 'body{attr:value;}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -22,6 +26,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{attr1:value1;attr2:value2;}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],

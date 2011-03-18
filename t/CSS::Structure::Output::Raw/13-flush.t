@@ -3,7 +3,10 @@ use CSS::Structure::Output::Raw;
 use English qw(-no_match_vars);
 use Test::More 'tests' => 5;
 
+# Debug message.
 print "Testing: flush() method.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Raw->new;
 $obj->put(
 	['s', 'selector'],
@@ -14,6 +17,7 @@ my $ret = $obj->flush;
 my $right_ret = 'selector{attr:value;}';
 is($ret, $right_ret);
 
+# Test.
 $obj->put(
 	['s', 'selector'],
 	['d', 'attr', 'value'],
@@ -22,6 +26,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, $right_ret x 2);
 
+# Test.
 $obj->put(
 	['s', 'selector'],
 	['d', 'attr', 'value'],
@@ -30,6 +35,7 @@ $obj->put(
 $ret = $obj->flush(1);
 is($ret, $right_ret x 3);
 
+# Test.
 $obj->put(
 	['s', 'selector'],
 	['d', 'attr', 'value'],
@@ -38,6 +44,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, $right_ret);
 
+# Test.
 SKIP: {
 	eval {
 		require File::Temp;

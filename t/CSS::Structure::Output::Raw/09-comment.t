@@ -2,7 +2,10 @@
 use CSS::Structure::Output::Raw;
 use Test::More 'tests' => 13;
 
+# Debug message.
 print "Testing: Without comment.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Raw->new(
 	'skip_comments' => 1,
 );
@@ -12,6 +15,7 @@ $obj->put(
 my $ret = $obj->flush;
 is($ret, '');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment'],
@@ -21,6 +25,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -31,6 +36,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -42,6 +48,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{attr1:value1;attr2:value2;}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment1'],
@@ -53,6 +60,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body,div{}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment1'],
@@ -65,7 +73,10 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{}div{}');
 
+# Debug message.
 print "Testing: Comment.\n";
+
+# Test.
 $obj = CSS::Structure::Output::Raw->new(
 	'skip_comments' => 0,
 );
@@ -75,6 +86,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, '/*comment*/');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment'],
@@ -84,6 +96,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, '/*comment*/body{}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment1'],
@@ -96,6 +109,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, '/*comment1*/body{}/*comment2*/div{}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -105,6 +119,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{/*comment*/}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -115,6 +130,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{/*comment1*//*comment2*/}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -126,6 +142,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{attr1:value1;/*comment*/attr2:value2;}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['c', 'comment1'],

@@ -2,7 +2,10 @@
 use CSS::Structure::Output::Raw;
 use Test::More 'tests' => 3;
 
+# Debug message.
 print "Testing: Selector.\n";
+
+# Test.
 my $obj = CSS::Structure::Output::Raw->new;
 $obj->put(
 	['s', 'body'],
@@ -10,6 +13,7 @@ $obj->put(
 my $ret = $obj->flush;
 is($ret, '');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
@@ -18,6 +22,7 @@ $obj->put(
 $ret = $obj->flush;
 is($ret, 'body{}');
 
+# Test.
 $obj->reset;
 $obj->put(
 	['s', 'body'],
