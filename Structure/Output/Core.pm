@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 # Modules.
-use CSS::Structure::Utils qw(set_params);
+use Class::Utils qw(set_params);
 use Error::Simple::Multiple qw(err);
 use List::MoreUtils qw(none);
 
@@ -368,19 +368,18 @@ CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
    No opened selector.
    Output handler is bad file handler.
 
- From CSS::Structure::Utils::set_params():
+ From Class::Utils::set_params():
    Unknown parameter '%s'.
 
 =head1 DEPENDENCIES
 
-L<CSS::Structure::Utils(3pm)>,
+L<Class::Utils(3pm)>,
 L<Error::Simple::Multiple(3pm)>,
 L<List::MoreUtils(3pm)>.
 
 =head1 SEE ALSO
 
 L<CSS::Structure(3pm)>,
-L<CSS::Structure::Utils(3pm)>,
 L<CSS::Structure::Output::Indent(3pm)>,
 L<CSS::Structure::Output::Raw(3pm)>.
 

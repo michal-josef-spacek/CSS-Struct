@@ -4,7 +4,6 @@ Structure.pm
 Structure/Output/Core.pm
 Structure/Output/Indent.pm
 Structure/Output/Raw.pm
-Structure/Utils.pm
 t/CSS::Structure/00-use.t
 t/CSS::Structure/01-version.t
 t/CSS::Structure/02-pod_coverage.t
@@ -50,9 +49,4 @@ t/CSS::Structure::Output::Raw/12-output_handler.t
 t/CSS::Structure::Output::Raw/13-flush.t
 t/CSS::Structure::Output::Raw/14-error.t
 t/CSS::Structure::Output::Raw/15-put.t
-t/CSS::Structure::Utils/00-use.t
-t/CSS::Structure::Utils/01-version.t
-t/CSS::Structure::Utils/02-pod_coverage.t
-t/CSS::Structure::Utils/03-pod.t
-t/CSS::Structure::Utils/04-set_params.t
 t/get_stdout.inc
