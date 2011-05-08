@@ -3,9 +3,6 @@ use CSS::Structure::Output::Core;
 use English qw(-no_match_vars);
 use Test::More 'tests' => 9;
 
-# Debug message.
-print "Testing: Constructor.\n";
-
 # Test.
 eval {
 	CSS::Structure::Output::Core->new('');

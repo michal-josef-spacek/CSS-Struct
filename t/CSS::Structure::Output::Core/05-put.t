@@ -2,9 +2,6 @@
 use CSS::Structure::Output::Core;
 use Test::More 'tests' => 2;
 
-# Debug message.
-print "Testing: put() method.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Core->new;
 $obj->put(

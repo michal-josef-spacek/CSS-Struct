@@ -6,9 +6,6 @@ use Test::More 'tests' => 2;
 # Include helpers.
 do File::Object->new->up->file('get_stdout.inc')->serialize;
 
-# Debug message.
-print "Testing: Output handler.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Core->new(
 	'output_handler' => \*STDOUT,
