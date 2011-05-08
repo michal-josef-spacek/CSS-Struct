@@ -12,7 +12,7 @@ t/CSS::Structure::Output::Core/00-use.t
 t/CSS::Structure::Output::Core/01-version.t
 t/CSS::Structure::Output::Core/02-pod_coverage.t
 t/CSS::Structure::Output::Core/03-pod.t
-t/CSS::Structure::Output::Core/04-constructor.t
+t/CSS::Structure::Output::Core/04-new.t
 t/CSS::Structure::Output::Core/05-put.t
 t/CSS::Structure::Output::Core/06-output_handler.t
 t/CSS::Structure::Output::Core/07-flush.t
@@ -21,7 +21,7 @@ t/CSS::Structure::Output::Indent/00-use.t
 t/CSS::Structure::Output::Indent/01-version.t
 t/CSS::Structure::Output::Indent/02-pod_coverage.t
 t/CSS::Structure::Output::Indent/03-pod.t
-t/CSS::Structure::Output::Indent/04-constructor.t
+t/CSS::Structure::Output::Indent/04-new.t
 t/CSS::Structure::Output::Indent/05-selector.t
 t/CSS::Structure::Output::Indent/06-definition.t
 t/CSS::Structure::Output::Indent/07-end_of_selector.t
@@ -37,7 +37,7 @@ t/CSS::Structure::Output::Raw/00-use.t
 t/CSS::Structure::Output::Raw/01-version.t
 t/CSS::Structure::Output::Raw/02-pod_coverage.t
 t/CSS::Structure::Output::Raw/03-pod.t
-t/CSS::Structure::Output::Raw/04-constructor.t
+t/CSS::Structure::Output::Raw/04-new.t
 t/CSS::Structure::Output::Raw/05-selector.t
 t/CSS::Structure::Output::Raw/06-definition.t
 t/CSS::Structure::Output::Raw/07-end_of_selector.t
