@@ -385,7 +385,7 @@ L<CSS::Structure::Output::Raw(3pm)>.
 
 =head1 AUTHOR
 
-Michal Špaček L<tupinek@gmail.com>
+Michal Špaček L<skim@cpan.org>
 
 =head1 LICENSE AND COPYRIGHT
 
