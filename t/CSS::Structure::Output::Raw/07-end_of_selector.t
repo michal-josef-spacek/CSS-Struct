@@ -22,5 +22,5 @@ $obj->put(
 	['s', 'body'],
 	['e'],
 );
-$ret = $obj->flush;
+my $ret = $obj->flush;
 is($ret, 'body{}');

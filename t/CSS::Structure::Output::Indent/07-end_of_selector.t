@@ -22,7 +22,7 @@ $obj->put(
 	['s', 'body'],
 	['e'],
 );
-$ret = $obj->flush;
+my $ret = $obj->flush;
 my $right_ret = <<'END';
 body {
 }

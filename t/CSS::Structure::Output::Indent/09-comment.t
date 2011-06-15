@@ -24,7 +24,7 @@ $obj->put(
 	['e'],
 );
 $ret = $obj->flush;
-$right_ret = <<'END';
+my $right_ret = <<'END';
 body {
 }
 END
@@ -59,7 +59,7 @@ $obj->put(
 	['e'],
 );
 $ret = $obj->flush;
-my $right_ret = <<'END';
+$right_ret = <<'END';
 body {
 }
 END
