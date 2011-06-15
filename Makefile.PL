@@ -12,7 +12,6 @@ WriteMakefile(
 	'PREREQ_PM' => {
 		'Class::Utils' => 0.01,
 		'Error::Pure' => 0.01,
-		'File::Object' => 0,
 		'List::MoreUtils' => 0,
 		'Readonly' => 0,
 	},
