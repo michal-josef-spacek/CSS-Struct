@@ -2,9 +2,6 @@
 use CSS::Structure::Output::Indent;
 use Test::More 'tests' => 16;
 
-# Debug message.
-print "Testing: Without comment.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Indent->new(
 	'skip_comments' => 1,

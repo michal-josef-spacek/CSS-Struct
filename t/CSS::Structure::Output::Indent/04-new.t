@@ -3,9 +3,6 @@ use CSS::Structure::Output::Indent;
 use English qw(-no_match_vars);
 use Test::More 'tests' => 8;
 
-# Debug message.
-print "Testing: Constructor.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Indent->new;
 ok(defined $obj);

@@ -2,9 +2,6 @@
 use CSS::Structure::Output::Indent;
 use Test::More 'tests' => 3;
 
-# Debug message.
-print "Testing: Definition.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Indent->new;
 $obj->put(
