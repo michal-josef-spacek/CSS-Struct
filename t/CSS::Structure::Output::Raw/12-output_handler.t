@@ -1,3 +1,7 @@
+# Pragmas.
+use strict;
+use warnings;
+
 # Modules.
 use CSS::Structure::Output::Raw;
 use File::Object;
