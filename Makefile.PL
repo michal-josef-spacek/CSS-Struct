@@ -20,7 +20,6 @@ WriteMakefile(
 	'test' => {
 		'TESTS' => 't/CSS::Structure/*.t '.
 			't/CSS::Structure::Output::Core/*.t '.
-			't/CSS::Structure::Output::Indent/*.t '.
 			't/CSS::Structure::Output::Raw/*.t',
 	},
 );
