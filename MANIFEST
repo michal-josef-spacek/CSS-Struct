@@ -49,4 +49,3 @@ t/CSS::Structure::Output::Raw/12-output_handler.t
 t/CSS::Structure::Output::Raw/13-flush.t
 t/CSS::Structure::Output::Raw/14-error.t
 t/CSS::Structure::Output::Raw/15-put.t
-t/get_stdout.inc
