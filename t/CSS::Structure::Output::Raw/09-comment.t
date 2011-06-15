@@ -2,9 +2,6 @@
 use CSS::Structure::Output::Raw;
 use Test::More 'tests' => 13;
 
-# Debug message.
-print "Testing: Without comment.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Raw->new(
 	'skip_comments' => 1,
@@ -72,9 +69,6 @@ $obj->put(
 );
 $ret = $obj->flush;
 is($ret, 'body{}div{}');
-
-# Debug message.
-print "Testing: Comment.\n";
 
 # Test.
 $obj = CSS::Structure::Output::Raw->new(

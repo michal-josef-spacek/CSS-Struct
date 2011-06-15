@@ -2,9 +2,6 @@
 use CSS::Structure::Output::Raw;
 use Test::More 'tests' => 1;
 
-# Debug message.
-print "Testing: Raw data.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Raw->new;
 $obj->put(

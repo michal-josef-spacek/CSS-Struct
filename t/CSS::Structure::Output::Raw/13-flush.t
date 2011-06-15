@@ -3,9 +3,6 @@ use CSS::Structure::Output::Raw;
 use English qw(-no_match_vars);
 use Test::More 'tests' => 5;
 
-# Debug message.
-print "Testing: flush() method.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Raw->new;
 $obj->put(

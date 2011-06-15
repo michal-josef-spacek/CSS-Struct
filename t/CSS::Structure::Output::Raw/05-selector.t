@@ -2,9 +2,6 @@
 use CSS::Structure::Output::Raw;
 use Test::More 'tests' => 3;
 
-# Debug message.
-print "Testing: Selector.\n";
-
 # Test.
 my $obj = CSS::Structure::Output::Raw->new;
 $obj->put(
