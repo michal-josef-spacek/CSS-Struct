@@ -202,22 +202,23 @@ CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to CSS cod
 =head1 ERRORS
 
  Mine:
-   None
+         None
 
  From CSS::Structure::Core:
-   Auto-flush can't use without output handler.
-   Bad comment delimeters.
-   Bad data.
-   Bad number of arguments.
-     ('CSS::Structure' structure array),
-   Bad type of data.
-   Cannot write to output handler.
-   No opened selector.
-   Output handler is bad file handler.
-   Unknown parameter '%s'.
+         Auto-flush can't use without output handler.
+         Bad comment delimeters.
+         Bad data.
+         Bad number of arguments.
+                 ('CSS::Structure' structure array),
+         Bad type of data.
+         Cannot write to output handler.
+         No opened selector.
+         Output handler is bad file handler.
+         Unknown parameter '%s'.
 
 =head1 DEPENDENCIES
 
+L<CSS::Structure::Output::Core(3pm)>,
 L<Readonly(3pm)>.
 
 =head1 SEE ALSO

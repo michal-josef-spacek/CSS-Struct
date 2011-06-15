@@ -358,18 +358,18 @@ CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
 =head1 ERRORS
 
  Mine:
-   Auto-flush can't use without output handler.
-   Bad comment delimeters.
-   Bad data.
-   Bad number of arguments.
-     ('CSS::Structure' structure array),
-   Bad type of data.
-   Cannot write to output handler.
-   No opened selector.
-   Output handler is bad file handler.
+         Auto-flush can't use without output handler.
+         Bad comment delimeters.
+         Bad data.
+         Bad number of arguments.
+                 ('CSS::Structure' structure array),
+         Bad type of data.
+         Cannot write to output handler.
+         No opened selector.
+         Output handler is bad file handler.
 
  From Class::Utils::set_params():
-   Unknown parameter '%s'.
+         Unknown parameter '%s'.
 
 =head1 DEPENDENCIES
 
