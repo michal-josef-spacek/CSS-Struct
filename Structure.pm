@@ -50,10 +50,10 @@ CSS::Structure - Overview about CSS::Structure classes.
 
 =head1 SEE ALSO
 
-L<CSS::Structure::Output::Core(3pm)>,
-L<CSS::Structure::Output::Raw(3pm)>,
-L<CSS::Structure::Output::Indent(3pm)>,
-L<CSS::Structure::Utils(3pm)>.
+L<CSS::Structure::Output::Core>,
+L<CSS::Structure::Output::Raw>,
+L<CSS::Structure::Output::Indent>,
+L<CSS::Structure::Utils>.
 
 =head1 AUTHOR
 

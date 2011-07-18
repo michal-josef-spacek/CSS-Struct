@@ -347,7 +347,7 @@ CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
 
 =item C<put(@data)>
 
- Put CSS structure in format specified in L<CSS::Structure(3pm)>.
+ Put CSS structure in format specified in L<CSS::Structure>.
 
 =item C<reset()>
 
@@ -373,15 +373,15 @@ CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
 
 =head1 DEPENDENCIES
 
-L<Class::Utils(3pm)>,
-L<Error::Pure(3pm)>,
-L<List::MoreUtils(3pm)>.
+L<Class::Utils>,
+L<Error::Pure>,
+L<List::MoreUtils>.
 
 =head1 SEE ALSO
 
-L<CSS::Structure(3pm)>,
-L<CSS::Structure::Output::Indent(3pm)>,
-L<CSS::Structure::Output::Raw(3pm)>.
+L<CSS::Structure>,
+L<CSS::Structure::Output::Indent>,
+L<CSS::Structure::Output::Raw>.
 
 =head1 AUTHOR
 

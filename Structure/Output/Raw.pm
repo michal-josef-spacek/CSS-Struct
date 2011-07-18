@@ -191,7 +191,7 @@ CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to CSS cod
 
 =item C<put(@data)>
 
- Put CSS structure in format specified in L<CSS::Structure(3pm)>.
+ Put CSS structure in format specified in L<CSS::Structure>.
 
 =item C<reset()>
 
@@ -218,15 +218,15 @@ CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to CSS cod
 
 =head1 DEPENDENCIES
 
-L<CSS::Structure::Output::Core(3pm)>,
-L<Readonly(3pm)>.
+L<CSS::Structure::Output::Core>,
+L<Readonly>.
 
 =head1 SEE ALSO
 
-L<CSS::Structure(3pm)>,
-L<CSS::Structure::Utils(3pm)>,
-L<CSS::Structure::Output::Core(3pm)>,
-L<CSS::Structure::Output::Indent(3pm)>.
+L<CSS::Structure>,
+L<CSS::Structure::Utils>,
+L<CSS::Structure::Output::Core>,
+L<CSS::Structure::Output::Indent>.
 
 =head1 AUTHOR
 
