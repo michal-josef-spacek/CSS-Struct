@@ -44,10 +44,6 @@ CSS::Structure - Structure oriented CSS manipulation.
  r - @raw_data
  s - $selector
 
-=head1 DEPENDENCIES
-
- None.
-
 =head1 SEE ALSO
 
 L<CSS::Structure::Output::Core>,
