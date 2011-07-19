@@ -17,7 +17,7 @@ __END__
 
 =head1 NAME
 
-CSS::Structure - Overview about CSS::Structure classes.
+CSS::Structure - Structure oriented CSS manipulation.
 
 =head1 STRUCTURE
 
