@@ -14,11 +14,10 @@ requires 'Class::Utils' => 0.01;
 requires 'Error::Pure' => 0.01;
 requires 'List::MoreUtils' => 0;
 requires 'Readonly' => 0;
-resources 'repository' => {
-	'url' => 'git://github.com/tupinek/CSS::Structure',
-	'web' => 'https://github.com/tupinek/CSS::Structure',
-	'type' => 'git',
-};
+resources 'bugtracker' => 'https://rt.cpan.org/Public/Dist/Display.html'.
+	'?Name=CSS-Structure';
+resources 'homepage' => 'https://github.com/tupinek/CSS-Structure';
+resources 'repository' => 'git://github.com/tupinek/CSS-Structure';
 test_requires 'English' => 0;
 test_requires 'File::Object' => 0.01;
 test_requires 'Test::More' => 0;
