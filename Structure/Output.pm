@@ -1,4 +1,4 @@
-package CSS::Structure::Output::Core;
+package CSS::Structure::Output;
 
 # Pragmas.
 use strict;
@@ -282,12 +282,12 @@ __END__
 
 =head1 NAME
 
-CSS::Structure::Output::Core - Base class for CSS::Structure::Output::*.
+CSS::Structure::Output - Base class for CSS::Structure::Output::*.
 
 =head1 SYNOPSIS
 
- use CSS::Structure::Output::Raw;
- my $css = CSS::Structure::Output::Core->new(%parameters);
+ use CSS::Structure::Output;
+ my $css = CSS::Structure::Output->new(%parameters);
  $css->put(@data);
  $css->flush($reset_flag);
  $css->reset;

@@ -1,7 +1,7 @@
 package CSS::Structure::Output::Raw;
 
 # Pragmas.
-use base qw(CSS::Structure::Output::Core);
+use base qw(CSS::Structure::Output);
 use strict;
 use warnings;
 
@@ -18,7 +18,7 @@ our $VERSION = 0.01;
 sub reset {
 	my $self = shift;
 
-	# Reset internal variables from *::Core.
+	# Reset internal variables from main class.
 	$self->SUPER::reset;
 
 	# Comment after selector.
@@ -201,7 +201,7 @@ CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to CSS cod
 
 =head1 ERRORS
 
- From CSS::Structure::Core:
+ From CSS::Structure::Output:
          Auto-flush can't use without output handler.
          Bad comment delimeters.
          Bad data.
@@ -215,14 +215,14 @@ CSS::Structure::Output::Raw - Raw printing 'CSS::Structure' structure to CSS cod
 
 =head1 DEPENDENCIES
 
-L<CSS::Structure::Output::Core>,
+L<CSS::Structure::Output>,
 L<Readonly>.
 
 =head1 SEE ALSO
 
 L<CSS::Structure>,
 L<CSS::Structure::Utils>,
-L<CSS::Structure::Output::Core>,
+L<CSS::Structure::Output>,
 L<CSS::Structure::Output::Indent>.
 
 =head1 AUTHOR

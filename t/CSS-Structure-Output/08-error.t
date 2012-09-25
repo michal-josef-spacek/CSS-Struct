@@ -3,12 +3,12 @@ use strict;
 use warnings;
 
 # Modules.
-use CSS::Structure::Output::Core;
+use CSS::Structure::Output;
 use English qw(-no_match_vars);
 use Test::More 'tests' => 4;
 
 # Test.
-my $obj = CSS::Structure::Output::Core->new;
+my $obj = CSS::Structure::Output->new;
 eval {
 	$obj->put('String');
 };
@@ -32,7 +32,7 @@ eval {
 is($EVAL_ERROR, "Bad number of arguments.\n");
 
 # Test.
-$obj = CSS::Structure::Output::Core->new(
+$obj = CSS::Structure::Output->new(
 	'skip_bad_types' => 0,
 );
 eval {

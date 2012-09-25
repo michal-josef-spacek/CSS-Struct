@@ -3,11 +3,11 @@ use strict;
 use warnings;
 
 # Modules.
-use CSS::Structure::Output::Core;
+use CSS::Structure::Output;
 use Test::More 'tests' => 2;
 
 # Test.
-my $obj = CSS::Structure::Output::Core->new;
+my $obj = CSS::Structure::Output->new;
 $obj->put(
 	['a', 'at-rule'],
 	['c', 'comment'],
@@ -31,7 +31,7 @@ chomp $right_ret;
 is($ret, $right_ret);
 
 # Test.
-$obj = CSS::Structure::Output::Core->new(
+$obj = CSS::Structure::Output->new(
 	'skip_bad_types' => 1,
 );
 $obj->put(

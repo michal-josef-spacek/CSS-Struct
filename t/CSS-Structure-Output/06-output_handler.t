@@ -3,13 +3,13 @@ use strict;
 use warnings;
 
 # Modules.
-use CSS::Structure::Output::Core;
+use CSS::Structure::Output;
 use File::Object;
 use Test::More 'tests' => 2;
 use Test::Output;
 
 # Test.
-my $obj = CSS::Structure::Output::Core->new(
+my $obj = CSS::Structure::Output->new(
 	'output_handler' => \*STDOUT,
 );
 my $right_ret = <<'END';
@@ -32,7 +32,7 @@ stdout_is(
 );
 
 # Test.
-$obj = CSS::Structure::Output::Core->new(
+$obj = CSS::Structure::Output->new(
 	'auto_flush' => 1,
 	'output_handler' => \*STDOUT,
 );

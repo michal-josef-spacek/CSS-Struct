@@ -3,12 +3,12 @@ use strict;
 use warnings;
 
 # Modules.
-use CSS::Structure::Output::Core;
+use CSS::Structure::Output;
 use English qw(-no_match_vars);
 use Test::More 'tests' => 5;
 
 # Test.
-my $obj = CSS::Structure::Output::Core->new;
+my $obj = CSS::Structure::Output->new;
 $obj->put(
 	['s', 'selector'],
 	['d', 'attr', 'value'],
@@ -85,7 +85,7 @@ SKIP: {
 		skip 'File::Temp not installed', 1;
 	};
 	my $temp_fh = File::Temp::tempfile();
-	$obj = CSS::Structure::Output::Core->new(
+	$obj = CSS::Structure::Output->new(
 		'output_handler' => $temp_fh,
 	);
 	$obj->put(

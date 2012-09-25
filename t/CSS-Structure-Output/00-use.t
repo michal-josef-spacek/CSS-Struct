@@ -8,8 +8,8 @@ use Test::More 'tests' => 2;
 BEGIN {
 
 	# Test.
-	use_ok('CSS::Structure::Output::Core');
+	use_ok('CSS::Structure::Output');
 }
 
 # Test.
-require_ok('CSS::Structure::Output::Core');
+require_ok('CSS::Structure::Output');
