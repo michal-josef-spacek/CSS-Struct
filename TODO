@@ -3,7 +3,9 @@ TODO
 1. At-rule.
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 8. Resit callbacks?
-13.
+13. Prejmenovat CSS::Structure::Output::Core na CSS::Structure::Output a toto
+    bude zakladni trida.
+14.
 
 Applied
 =======
