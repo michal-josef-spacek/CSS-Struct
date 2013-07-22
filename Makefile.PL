@@ -11,7 +11,7 @@ author 'Michal Špaček <skim@cpan.org>';
 license 'bsd';
 name 'CSS-Structure';
 requires 'Class::Utils' => 0.03;
-requires 'Error::Pure' => 0.08;
+requires 'Error::Pure' => 0.11;
 requires 'List::MoreUtils' => 0;
 requires 'Readonly' => 0;
 resources 'bugtracker' => 'https://rt.cpan.org/Public/Dist/Display.html'.

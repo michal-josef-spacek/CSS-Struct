@@ -25,7 +25,7 @@ no_index:
     - t
 requires:
   Class::Utils: 0.03
-  Error::Pure: 0.08
+  Error::Pure: 0.11
   List::MoreUtils: 0
   Readonly: 0
 resources:
