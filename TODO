@@ -3,7 +3,8 @@ TODO
 1. At-rule.
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 8. Resit callbacks?
-14.
+14. Do testu pouzit isa_ok().
+15.
 
 Applied
 =======
