@@ -4,7 +4,8 @@ TODO
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 8. Resit callbacks?
 14. Do testu pouzit isa_ok().
-15.
+15. Do testu pridat komentare.
+16.
 
 Applied
 =======
