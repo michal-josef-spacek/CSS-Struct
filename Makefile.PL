@@ -10,6 +10,7 @@ abstract 'Structure oriented CSS manipulation.';
 author 'Michal Spacek <skim@cpan.org>';
 license 'bsd';
 name 'CSS-Structure';
+readme_from 'Structure.pm';
 requires 'Class::Utils' => 0.03;
 requires 'Error::Pure' => 0.11;
 requires 'List::MoreUtils' => 0;
