@@ -1,8 +1,6 @@
-# Pragmas.
 use strict;
 use warnings;
 
-# Modules.
 use CSS::Structure::Output;
 use Test::More 'tests' => 2;
 

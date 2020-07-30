@@ -1,15 +1,12 @@
 package CSS::Structure::Output;
 
-# Pragmas.
 use strict;
 use warnings;
 
-# Modules.
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
 use List::MoreUtils qw(none);
 
-# Version.
 our $VERSION = 0.01;
 
 # Constructor.

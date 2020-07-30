@@ -1,17 +1,14 @@
 package CSS::Structure::Output::Raw;
 
-# Pragmas.
 use base qw(CSS::Structure::Output);
 use strict;
 use warnings;
 
-# Modules.
 use Readonly;
 
 # Constants.
 Readonly::Scalar my $EMPTY_STR => q{};
 
-# Version.
 our $VERSION = 0.01;
 
 # Resets internal variables.
