@@ -218,9 +218,21 @@ L<Readonly>.
 
 =head1 SEE ALSO
 
-L<CSS::Struct>,
-L<CSS::Struct::Output>,
-L<CSS::Struct::Output::Indent>.
+=over
+
+=item L<CSS::Struct>
+
+Struct oriented CSS manipulation.
+
+=item L<CSS::Struct::Output>
+
+Base class for CSS::Struct::Output::*.
+
+=item L<CSS::Struct::Output::Indent>
+
+Indent printing 'CSS::Struct' structure to CSS code.
+
+=back
 
 =head1 AUTHOR
 

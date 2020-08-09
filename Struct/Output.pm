@@ -377,9 +377,21 @@ L<List::MoreUtils>.
 
 =head1 SEE ALSO
 
-L<CSS::Struct>,
-L<CSS::Struct::Output::Indent>,
-L<CSS::Struct::Output::Raw>.
+=over
+
+=item L<CSS::Struct>
+
+Struct oriented CSS manipulation.
+
+=item L<CSS::Struct::Output::Raw>
+
+Raw printing 'CSS::Struct' structure to CSS code.
+
+=item L<CSS::Struct::Output::Indent>
+
+Indent printing 'CSS::Struct' structure to CSS code.
+
+=back
 
 =head1 AUTHOR
 
