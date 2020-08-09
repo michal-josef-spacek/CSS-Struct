@@ -224,13 +224,13 @@ L<CSS::Structure::Output::Indent>.
 
 =head1 AUTHOR
 
-Michal Špaček L<mailto:skim@cpan.org>
+Michal Josef Špaček L<mailto:skim@cpan.org>
 
 L<http://skim.cz>
 
 =head1 LICENSE AND COPYRIGHT
 
-© 2007-2020 Michal Špaček
+© 2007-2020 Michal Josef Špaček
 
 BSD 2-Clause License
 

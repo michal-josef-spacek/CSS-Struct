@@ -6,7 +6,7 @@ use inc::Module::Install;
 
 # Definition.
 abstract 'Structure oriented CSS manipulation.';
-author 'Michal Spacek <skim@cpan.org>';
+author 'Michal Josef Spacek <skim@cpan.org>';
 license 'bsd';
 name 'CSS-Structure';
 readme_from 'Structure.pm';
