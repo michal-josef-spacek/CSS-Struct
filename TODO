@@ -4,7 +4,8 @@ TODO
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 8. Resit callbacks?
 15. Do testu pridat komentare.
-17.
+17. Prepsat dokumentaci na uziti =head2
+18.
 
 Applied
 =======
