@@ -1,5 +1,5 @@
 NAME
-    CSS::Structure - Structure oriented CSS manipulation.
+    CSS::Struct - Struct oriented CSS manipulation.
 
 STRUCTURE
      Perl structure:
@@ -26,8 +26,8 @@ STRUCTURE
      s - $selector
 
 SEE ALSO
-    CSS::Structure::Output::Core, CSS::Structure::Output::Raw,
-    CSS::Structure::Output::Indent, CSS::Structure::Utils.
+    CSS::Struct::Output::Core, CSS::Struct::Output::Raw,
+    CSS::Struct::Output::Indent, CSS::Struct::Utils.
 
 AUTHOR
     Michal Josef Špaček <mailto:skim@cpan.org>

@@ -5,7 +5,6 @@ TODO
 8. Resit callbacks?
 14. Do testu pouzit isa_ok().
 15. Do testu pridat komentare.
-16. Prejmenovat na CSS::Struct?
 17.
 
 Applied
@@ -48,3 +47,6 @@ NONE [20110719] skim
 13. Prejmenovat CSS::Structure::Output::Core na CSS::Structure::Output a toto
     bude zakladni trida.
 OK [20120925] skim
+
+16. Prejmenovat na CSS::Struct?
+OK [20200809] skim

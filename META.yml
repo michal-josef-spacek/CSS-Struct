@@ -1,5 +1,5 @@
 ---
-abstract: 'Structure oriented CSS manipulation.'
+abstract: 'Struct oriented CSS manipulation.'
 author:
   - 'Michal Josef Spacek <skim@cpan.org>'
 build_requires:
@@ -16,7 +16,7 @@ license: bsd
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
-name: CSS-Structure
+name: CSS-Struct
 no_index:
   directory:
     - inc
@@ -28,8 +28,8 @@ requires:
   List::MoreUtils: 0
   Readonly: 0
 resources:
-  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=CSS-Structure
-  homepage: https://github.com/michal-josef-spacek/CSS-Structure
+  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=CSS-Struct
+  homepage: https://github.com/michal-josef-spacek/CSS-Struct
   license: http://opensource.org/licenses/bsd-license.php
-  repository: git://github.com/michal-josef-spacek/CSS-Structure
+  repository: git://github.com/michal-josef-spacek/CSS-Struct
 version: '0.01'
