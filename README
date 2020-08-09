@@ -26,8 +26,8 @@ STRUCTURE
      s - $selector
 
 SEE ALSO
-    CSS::Struct::Output::Core, CSS::Struct::Output::Raw,
-    CSS::Struct::Output::Indent, CSS::Struct::Utils.
+    CSS::Struct::Output, CSS::Struct::Output::Raw,
+    CSS::Struct::Output::Indent.
 
 AUTHOR
     Michal Josef Špaček <mailto:skim@cpan.org>

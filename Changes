@@ -1,5 +1,6 @@
 0.02
  - Improve SYNOPSIS section in doc.
+ - Remove obsolete module from SEE ALSO section in doc.
 
 0.01 2020-08-09T12:06:25+02:00
  - First version.

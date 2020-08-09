@@ -44,10 +44,9 @@ CSS::Struct - Struct oriented CSS manipulation.
 
 =head1 SEE ALSO
 
-L<CSS::Struct::Output::Core>,
+L<CSS::Struct::Output>,
 L<CSS::Struct::Output::Raw>,
-L<CSS::Struct::Output::Indent>,
-L<CSS::Struct::Utils>.
+L<CSS::Struct::Output::Indent>.
 
 =head1 AUTHOR
 

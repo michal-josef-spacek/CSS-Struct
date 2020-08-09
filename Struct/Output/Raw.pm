@@ -219,7 +219,6 @@ L<Readonly>.
 =head1 SEE ALSO
 
 L<CSS::Struct>,
-L<CSS::Struct::Utils>,
 L<CSS::Struct::Output>,
 L<CSS::Struct::Output::Indent>.
 
