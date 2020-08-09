@@ -9,7 +9,7 @@ use Readonly;
 # Constants.
 Readonly::Scalar my $EMPTY_STR => q{};
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 # Resets internal variables.
 sub reset {
@@ -236,6 +236,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.01
+0.02
 
 =cut
