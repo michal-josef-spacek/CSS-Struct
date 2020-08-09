@@ -284,6 +284,7 @@ CSS::Struct::Output - Base class for CSS::Struct::Output::*.
 =head1 SYNOPSIS
 
  use CSS::Struct::Output;
+
  my $css = CSS::Struct::Output->new(%parameters);
  $css->put(@data);
  $css->flush($reset_flag);

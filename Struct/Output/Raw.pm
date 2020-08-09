@@ -133,6 +133,7 @@ CSS::Struct::Output::Raw - Raw printing 'CSS::Struct' structure to CSS code.
 =head1 SYNOPSIS
 
  use CSS::Struct::Output::Raw;
+
  my $css = CSS::Struct::Output::Raw->new(%parameters);
  $css->put(@data);
  $css->flush;
