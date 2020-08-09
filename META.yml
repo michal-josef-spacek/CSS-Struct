@@ -30,7 +30,7 @@ requires:
   Readonly: 0
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=CSS-Structure
-  homepage: https://github.com/tupinek/CSS-Structure
+  homepage: https://github.com/michal-josef-spacek/CSS-Structure
   license: http://opensource.org/licenses/bsd-license.php
-  repository: git://github.com/tupinek/CSS-Structure
+  repository: git://github.com/michal-josef-spacek/CSS-Structure
 version: '0.01'
