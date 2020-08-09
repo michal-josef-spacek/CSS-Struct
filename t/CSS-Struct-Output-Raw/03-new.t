@@ -4,7 +4,8 @@ use warnings;
 use CSS::Struct::Output::Raw;
 use English qw(-no_match_vars);
 use Error::Pure::Utils qw(clean);
-use Test::More 'tests' => 7;
+use Test::More 'tests' => 8;
+use Test::NoWarnings;
 
 # Test.
 my $obj = CSS::Struct::Output::Raw->new;

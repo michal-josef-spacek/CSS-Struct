@@ -3,8 +3,9 @@ use warnings;
 
 use CSS::Struct::Output::Raw;
 use File::Object;
-use Test::More 'tests' => 2;
+use Test::More 'tests' => 3;
 use Test::Output;
+use Test::NoWarnings;
 
 # Test.
 my $obj = CSS::Struct::Output::Raw->new(

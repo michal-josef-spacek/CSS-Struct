@@ -2,7 +2,8 @@ use strict;
 use warnings;
 
 use CSS::Struct::Output;
-use Test::More 'tests' => 2;
+use Test::More 'tests' => 3;
+use Test::NoWarnings;
 
 # Test.
 my $obj = CSS::Struct::Output->new;

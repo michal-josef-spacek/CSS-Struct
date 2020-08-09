@@ -4,7 +4,8 @@ use warnings;
 use CSS::Struct::Output;
 use English qw(-no_match_vars);
 use Error::Pure::Utils qw(clean);
-use Test::More 'tests' => 8;
+use Test::More 'tests' => 9;
+use Test::NoWarnings;
 
 # Test.
 eval {
