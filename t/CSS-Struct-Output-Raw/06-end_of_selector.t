@@ -3,6 +3,7 @@ use warnings;
 
 use CSS::Struct::Output::Raw;
 use English qw(-no_match_vars);
+use Error::Pure::Utils qw(clean);
 use Test::More 'tests' => 2;
 
 # Test.
@@ -13,6 +14,7 @@ eval {
 	);
 };
 is($EVAL_ERROR, "No opened selector.\n");
+clean();
 
 # Test.
 $obj->reset;

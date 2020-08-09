@@ -3,6 +3,7 @@ use warnings;
 
 use CSS::Struct::Output;
 use English qw(-no_match_vars);
+use Error::Pure::Utils qw(clean);
 use Test::More 'tests' => 4;
 
 # Test.
@@ -11,6 +12,7 @@ eval {
 	$obj->put('String');
 };
 is($EVAL_ERROR, "Bad data.\n");
+clean();
 
 # Test.
 eval {
@@ -19,6 +21,7 @@ eval {
 	);
 };
 is($EVAL_ERROR, "Bad number of arguments.\n");
+clean();
 
 # Test.
 $obj->reset;
@@ -28,6 +31,7 @@ eval {
 	);
 };
 is($EVAL_ERROR, "Bad number of arguments.\n");
+clean();
 
 # Test.
 $obj = CSS::Struct::Output->new(
@@ -39,3 +43,4 @@ eval {
 	);
 };
 is($EVAL_ERROR, "Bad type of data.\n");
+clean();

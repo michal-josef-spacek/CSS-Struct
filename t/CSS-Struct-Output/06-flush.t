@@ -3,6 +3,7 @@ use warnings;
 
 use CSS::Struct::Output;
 use English qw(-no_match_vars);
+use Error::Pure::Utils qw(clean);
 use Test::More 'tests' => 5;
 
 # Test.
@@ -96,4 +97,5 @@ SKIP: {
 		$ret = $obj->flush;
 	};
 	is($EVAL_ERROR, "Cannot write to output handler.\n");
+	clean();
 }
