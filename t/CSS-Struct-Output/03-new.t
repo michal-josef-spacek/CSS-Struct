@@ -3,7 +3,7 @@ use warnings;
 
 use CSS::Struct::Output;
 use English qw(-no_match_vars);
-use Test::More 'tests' => 9;
+use Test::More 'tests' => 8;
 
 # Test.
 eval {
@@ -61,5 +61,4 @@ is($EVAL_ERROR, 'Auto-flush can\'t use without output handler.'."\n");
 
 # Test.
 my $obj = CSS::Struct::Output->new;
-ok(defined $obj);
-ok($obj->isa('CSS::Struct::Output'));
+isa_ok($obj, 'CSS::Struct::Output');

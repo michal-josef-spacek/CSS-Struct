@@ -3,12 +3,11 @@ use warnings;
 
 use CSS::Struct::Output::Raw;
 use English qw(-no_match_vars);
-use Test::More 'tests' => 8;
+use Test::More 'tests' => 7;
 
 # Test.
 my $obj = CSS::Struct::Output::Raw->new;
-ok(defined $obj);
-ok($obj->isa('CSS::Struct::Output::Raw'));
+isa_ok($obj, 'CSS::Struct::Output::Raw');
 
 # Test.
 eval {

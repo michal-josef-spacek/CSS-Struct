@@ -3,7 +3,6 @@ TODO
 1. At-rule.
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 8. Resit callbacks?
-14. Do testu pouzit isa_ok().
 15. Do testu pridat komentare.
 17.
 
@@ -49,4 +48,7 @@ NONE [20110719] skim
 OK [20120925] skim
 
 16. Prejmenovat na CSS::Struct?
+OK [20200809] skim
+
+14. Do testu pouzit isa_ok().
 OK [20200809] skim
