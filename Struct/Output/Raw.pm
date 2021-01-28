@@ -135,17 +135,19 @@ CSS::Struct::Output::Raw - Raw printing 'CSS::Struct' structure to CSS code.
  use CSS::Struct::Output::Raw;
 
  my $css = CSS::Struct::Output::Raw->new(%parameters);
+ my $ret_or_undef = $css->flush($reset_flag);
  $css->put(@data);
- $css->flush;
  $css->reset;
 
 =head1 METHODS
 
-=over 8
+=head2 C<new>
 
-=item C<new(%parameters)>
+ my $css = CSS::Struct::Output::Raw->new(%parameters);
 
- Constructor.
+Constructor.
+
+Returns instance of object.
 
 =over 8
 
@@ -180,22 +182,32 @@ CSS::Struct::Output::Raw - Raw printing 'CSS::Struct' structure to CSS code.
 
 =back
 
-=item C<flush($reset_flag)>
+=head2 C<flush>
 
- Flush CSS structure in object.
- If defined 'output_handler' flush to its.
- Or return code.
- If enabled $reset_flag, then resets internal variables via reset method.
+ my $ret_or_undef = $css->flush($reset_flag);
 
-=item C<put(@data)>
+Flush CSS structure in object.
+If defined 'output_handler' flush to its.
+Or return CSS.
+If enabled $reset_flag, then resets internal variables via reset method.
 
- Put CSS structure in format specified in L<CSS::Struct>.
+Returns CSS string or undef.
 
-=item C<reset()>
+=head2 C<put>
 
- Resets internal variables.
+ $css->put(@data);
 
-=back
+Put CSS structure in format specified in L<CSS::Struct>.
+
+Returns undef.
+
+=head2 C<reset>
+
+ $css->reset;
+
+Resets internal variables.
+
+Returns undef.
 
 =head1 ERRORS
 
