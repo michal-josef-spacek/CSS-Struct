@@ -17,6 +17,13 @@ __END__
 
 CSS::Struct - Struct oriented CSS manipulation.
 
+=head1 DESCRIPTION
+
+This class is for description of CSS::Struct concept. There is specification of
+structure. Concrete implementations are in L<CSS::Struct::Output::Raw> and
+L<CSS::Struct::Output::Indent>. Abstract class for other implementations is in
+L<CSS::Struct::Output>.
+
 =head1 STRUCTURE
 
  Perl structure:

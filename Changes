@@ -1,4 +1,5 @@
 0.04
+ - Add DESCRIPTION to CSS::Struct.
  - Add EXAMPLE to CSS::Struct.
  - Add EXAMPLE to CSS::Struct::Output::Raw doc.
  - Fix bugtracker.
