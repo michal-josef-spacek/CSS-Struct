@@ -5,7 +5,6 @@ TODO
 8. Resit callbacks?
 15. Do testu pridat komentare.
 17. Prepsat dokumentaci na uziti =head2
-18. Priklad do Raw dokumentace.
 20.
 
 Applied
@@ -56,4 +55,7 @@ OK [20200809] skim
 OK [20200809] skim
 
 19. Priklad do hlavni dokumentace.
+OK [20210128] skim
+
+18. Priklad do Raw dokumentace.
 OK [20210128] skim
