@@ -72,7 +72,7 @@ sub put {
 		# Split to type and main CSS structure.
 		my ($type, @css_struct) = @{$css_structure_ar};
 
-		# Attributes.
+		# At-rule.
 		if ($type eq 'a') {
 			$self->_check_arguments(\@css_struct, 1, 2);
 			$self->_put_at_rules(@css_struct);
