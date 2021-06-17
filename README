@@ -83,11 +83,11 @@ SEE ALSO
     CSS::Struct::Output
         Base class for CSS::Struct::Output::*.
 
-    CSS::Struct::Output::Raw
-        Raw printing 'CSS::Struct' structure to CSS code.
-
     CSS::Struct::Output::Indent
         Indent printing 'CSS::Struct' structure to CSS code.
+
+    CSS::Struct::Output::Raw
+        Raw printing 'CSS::Struct' structure to CSS code.
 
 AUTHOR
     Michal Josef Špaček <mailto:skim@cpan.org>

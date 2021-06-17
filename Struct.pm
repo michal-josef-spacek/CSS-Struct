@@ -106,13 +106,13 @@ L<CSS::Struct::Output>.
 
 Base class for CSS::Struct::Output::*.
 
-=item L<CSS::Struct::Output::Raw>
-
-Raw printing 'CSS::Struct' structure to CSS code.
-
 =item L<CSS::Struct::Output::Indent>
 
 Indent printing 'CSS::Struct' structure to CSS code.
+
+=item L<CSS::Struct::Output::Raw>
+
+Raw printing 'CSS::Struct' structure to CSS code.
 
 =back
 
