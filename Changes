@@ -1,5 +1,6 @@
 0.05
  - Fix comment in code.
+ - Improve At-rule variables.
 
 0.04 2021-01-28T11:40:01+01:00
  - Add DESCRIPTION to CSS::Struct.

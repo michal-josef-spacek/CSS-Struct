@@ -44,8 +44,8 @@ sub _flush_tmp {
 
 # At-rules.
 sub _put_at_rules {
-	my ($self, $at_rule, $file) = @_;
-	$self->{'flush_code'} .= $at_rule.' "'.$file.'";';
+	my ($self, $at_rule, $value) = @_;
+	$self->{'flush_code'} .= $at_rule.' "'.$value.'";';
 	return;
 }
 
