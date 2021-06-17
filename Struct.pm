@@ -114,6 +114,10 @@ Indent printing 'CSS::Struct' structure to CSS code.
 
 Raw printing 'CSS::Struct' structure to CSS code.
 
+=item L<CSS::Struct::Output::Structure>
+
+Structure class for 'CSS::Struct' output.
+
 =back
 
 =head1 AUTHOR
