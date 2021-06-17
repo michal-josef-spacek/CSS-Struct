@@ -22,6 +22,7 @@ if ($indent) {
         $css = CSS::Struct::Output::Raw->new(%params);
 }
 
+$css->put(['a', '@charset', 'utf-8']);
 $css->put(['s', 'selector#id']);
 $css->put(['s', 'div div']);
 $css->put(['s', '.class']);
@@ -37,9 +38,10 @@ print "\n";
 # Usage: __SCRIPT__ indent
 
 # Output with argument 0:
-# selector#id,div div,.class{weight:100px;font-size:10em;}
+# @charset "utf-8";selector#id,div div,.class{weight:100px;font-size:10em;}
 
 # Output with argument 1:
+# @charset "utf-8";
 # selector#id, div div, .class {
 #         weight: 100px;
 #         font-size: 10em;

@@ -234,6 +234,7 @@ Returns undef.
          'output_handler' => \*STDOUT,
  );
 
+ $css->put(['a', '@charset', 'utf-8']);
  $css->put(['s', 'selector#id']);
  $css->put(['s', 'div div']);
  $css->put(['s', '.class']);
@@ -244,7 +245,7 @@ Returns undef.
  $css->flush;
 
  # Output:
- # selector#id,div div,.class{weight:100px;font-size:10em;}
+ # @charset "utf-8";selector#id,div div,.class{weight:100px;font-size:10em;}
 
 =head1 DEPENDENCIES
 
