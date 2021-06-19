@@ -6,6 +6,7 @@ use warnings;
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
 use List::MoreUtils qw(none);
+use Scalar::Util qw(openhandle);
 
 our $VERSION = 0.05;
 
@@ -191,7 +192,7 @@ sub _check_params {
 
 	# Check to output handler.
 	if (defined $self->{'output_handler'}
-		&& ref $self->{'output_handler'} ne 'GLOB') {
+		&& ! defined openhandle($self->{'output_handler'})) {
 
 		err 'Output handler is bad file handler.';
 	}
@@ -385,7 +386,8 @@ Returns undef.
 
 L<Class::Utils>,
 L<Error::Pure>,
-L<List::MoreUtils>.
+L<List::MoreUtils>,
+L<Scalar::Util>.
 
 =head1 SEE ALSO
 

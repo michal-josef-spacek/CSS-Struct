@@ -1,6 +1,7 @@
 0.05
  - Add At-rule to example.
  - Add another module to SEE ALSO section in doc.
+ - Fix checking of 'output_handler' parameter.
  - Fix comment in code.
  - Improve At-rule variables.
  - Sort SEE ALSO section in doc.
