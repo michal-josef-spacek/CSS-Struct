@@ -234,6 +234,7 @@ Returns undef.
          'output_handler' => \*STDOUT,
  );
 
+ $css->put(['c', 'comment']);
  $css->put(['a', '@charset', 'utf-8']);
  $css->put(['s', 'selector#id']);
  $css->put(['s', 'div div']);
@@ -245,7 +246,7 @@ Returns undef.
  $css->flush;
 
  # Output:
- # @charset "utf-8";selector#id,div div,.class{weight:100px;font-size:10em;}
+ # /*comment*/@charset "utf-8";selector#id,div div,.class{weight:100px;font-size:10em;}
 
 =head1 DEPENDENCIES
 

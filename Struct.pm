@@ -73,6 +73,7 @@ L<CSS::Struct::Output>.
          $css = CSS::Struct::Output::Raw->new(%params);
  }
 
+ $css->put(['c', 'comment']);
  $css->put(['a', '@charset', 'utf-8']);
  $css->put(['s', 'selector#id']);
  $css->put(['s', 'div div']);
@@ -89,8 +90,9 @@ L<CSS::Struct::Output>.
  # Usage: __SCRIPT__ indent
 
  # Output with argument 0:
- # @charset "utf-8";selector#id,div div,.class{weight:100px;font-size:10em;}
+ # /*comment*/@charset "utf-8";selector#id,div div,.class{weight:100px;font-size:10em;}
 
+ # /* comment */
  # Output with argument 1:
  # @charset "utf-8";
  # selector#id, div div, .class {
