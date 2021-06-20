@@ -1,7 +1,5 @@
 TODO
 ====
-1. At-rule.
->>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 8. Resit callbacks?
 15. Do testu pridat komentare.
 20. Co s reset(), ted to resetuje do [] ale nektere moduly do undef.
@@ -63,3 +61,7 @@ OK [20210128] skim
 
 17. Prepsat dokumentaci na uziti =head2
 OK [20210128] skim
+
+1. At-rule.
+>>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
+OK [20210620] skim
