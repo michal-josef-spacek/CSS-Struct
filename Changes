@@ -5,6 +5,7 @@
  - Fix comment in code.
  - Improve At-rule variables.
  - Sort SEE ALSO section in doc.
+ - Sort test files for CSS::Struct::Output.
 
 0.04 2021-01-28T11:40:01+01:00
  - Add DESCRIPTION to CSS::Struct.

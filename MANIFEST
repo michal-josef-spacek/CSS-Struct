@@ -39,10 +39,10 @@ t/CSS-Struct-Output-Raw/14-put.t
 t/CSS-Struct-Output/01-use.t
 t/CSS-Struct-Output/02-version.t
 t/CSS-Struct-Output/03-new.t
-t/CSS-Struct-Output/04-put.t
-t/CSS-Struct-Output/05-output_handler.t
-t/CSS-Struct-Output/06-flush.t
-t/CSS-Struct-Output/07-error.t
+t/CSS-Struct-Output/04-error.t
+t/CSS-Struct-Output/05-flush.t
+t/CSS-Struct-Output/06-output_handler.t
+t/CSS-Struct-Output/07-put.t
 t/CSS-Struct/01-use.t
 t/CSS-Struct/02-version.t
 xt/CSS-Struct-Output-Raw/01-pod_coverage.t
