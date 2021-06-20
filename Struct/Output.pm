@@ -8,7 +8,7 @@ use Error::Pure qw(err);
 use List::MoreUtils qw(none);
 use Scalar::Util qw(openhandle);
 
-our $VERSION = 0.05;
+our $VERSION = 0.06;
 
 # Constructor.
 sub new {
@@ -421,6 +421,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.05
+0.06
 
 =cut
