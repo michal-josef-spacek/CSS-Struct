@@ -4,7 +4,9 @@ TODO
 >>@import "file.css";<< jako ['a', '@import', 'file.css'] projde.
 8. Resit callbacks?
 15. Do testu pridat komentare.
-20.
+20. Co s reset(), ted to resetuje do [] ale nektere moduly do undef.
+Chci to zesynchronizovat.
+21.
 
 Applied
 =======
