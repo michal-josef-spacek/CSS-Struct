@@ -4,7 +4,14 @@ TODO
 15. Do testu pridat komentare.
 20. Co s reset(), ted to resetuje do [] ale nektere moduly do undef.
 Chci to zesynchronizovat.
-21.
+21. data type for @media?
+Example:
+@media (min-width: 768px) {
+  .class {
+    top: 0;
+  }
+}
+22.
 
 Applied
 =======
